@@ -39,6 +39,11 @@ To reprovision your site (using a database dump stored in db/database.sql)
 vagrant provision
 `
 
+To shell into the server
+`
+vagrant ssh
+`
+
 To restart phantomjs
 
 * Shell into the server (`vagrant ssh`)
@@ -47,10 +52,12 @@ To restart phantomjs
 
 ## Configuration information
 ### Default mysql config info
-database:  drupal
-user:      drupal
-password:  drupal
+
+* database:  drupal
+* user:      drupal
+* password:  drupal
 
 ### Drupal default admin user
-username:  admin
-password:  admin
+
+* username:  admin
+* password:  admin
