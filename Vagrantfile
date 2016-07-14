@@ -73,6 +73,7 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
+     nohup phantomjs --webdriver=8643 > /dev/null 2>&1 &
      mysql -u root -proot -e "drop database if exists drupal;"
      mysql -u root -proot -e "create database drupal;"
      if [ -e "/var/www/sites/drupal/db/database.sql" ]
@@ -85,7 +86,10 @@ Vagrant.configure(2) do |config|
      then
        echo "Please copy your settings.php file to www/sites/default/settings.php, or create a settings.php file to load your site."
      fi
-     nohup phantomjs --webdriver=8643 > /dev/null 2>&1 &
+     cd /var/www/sites/drupal/www
+     drush updb
+     drush fra -y
+     drush cc all
   SHELL
 end
 
