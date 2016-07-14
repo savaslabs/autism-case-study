@@ -75,7 +75,16 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL
      mysql -u root -proot -e "drop database if exists drupal;"
      mysql -u root -proot -e "create database drupal;"
-     mysql -u root -proot drupal < /var/www/sites/drupal/db/database.sql
+     if [ -e "/var/www/sites/drupal/db/database.sql" ]
+     then
+       mysql -u root -proot drupal < /var/www/sites/drupal/db/database.sql
+     else
+       echo "Please copy your seed database to db/database.sql, then rerun the provisioning command."
+     fi
+     if [ ! -f "/var/www/sites/drupal/www/sites/default/settings.php" ]
+     then
+       echo "Please copy your settings.php file to www/sites/default/settings.php, or create a settings.php file to load your site."
+     fi
      nohup phantomjs --webdriver=8643 > /dev/null 2>&1 &
   SHELL
 end
