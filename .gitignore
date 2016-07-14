@@ -1,0 +1,9 @@
+## Vagrant cache
+.vagrant
+
+## Nohup file
+nohup.out
+## Vendor folder from Symfony2
+vendor/
+## bin folder where behat executable is stored
+tests/bin/

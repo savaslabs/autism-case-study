@@ -1,0 +1,27 @@
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
+  extensions:
+    Behat\MinkExtension:
+      javascript_session: selenium2
+      browser_name: phantomjs
+      goutte: ~
+      selenium2:
+        wd_host: 'http://localhost:8643/wd/hub'
+      base_url: http://mydrupalsite.dev
+    Drupal\DrupalExtension:
+      blackbox: ~
+      api_driver: 'drupal' 
+      drush:
+        alias: 'local'
+      drupal: 
+        drupal_root: '/var/www/sites/drupal/www' 
+      region_map:
+        footer: "#footer"
+        content: ".content"
