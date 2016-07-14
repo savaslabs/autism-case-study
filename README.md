@@ -1,6 +1,5 @@
 # autism-case-study
 Drupal 7 case study site, which is an informational site for Autism.  This is Ro Wang's Learning Site.
-<<<<<<< HEAD
 
 ## Setup
 
@@ -55,9 +54,3 @@ password:  drupal
 ### Drupal default admin user
 username:  admin
 password:  admin
-
-
-
-
-=======
->>>>>>> dc7fc848119947332ee0569476e74748b5f1b760
