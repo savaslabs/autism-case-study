@@ -29,7 +29,6 @@ To halt the site
 vagrant halt
 `
 
-
 To suspend the site
 `
 vagrant suspend
