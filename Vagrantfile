@@ -12,7 +12,11 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "debian/jessie64"
+  #
+  # This base box is a Debian Jessie box with a LAMP Stack, Composer, Drush and
+  # PhantomJS.  It has MySQL configured and a base database created called
+  # "drupal".
+  config.vm.box = "savas/acs_debian_jessie"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
