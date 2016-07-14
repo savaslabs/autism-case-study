@@ -39,6 +39,12 @@ To reprovision your site (using a database dump stored in db/database.sql)
 vagrant provision
 `
 
+To restart phantomjs
+
+* Shell into the server (`vagrant ssh`)
+* Navigate to /var/www/sites/drupal/
+* Execute `/default/start-phantomjs`
+
 ## Configuration information
 ### Default mysql config info
 database:  drupal
