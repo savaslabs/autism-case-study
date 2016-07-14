@@ -73,6 +73,10 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
+     mysql -u root -proot -e "drop database if exists drupal;"
+     mysql -u root -proot -e "create database drupal;"
+     mysql -u root -proot drupal < /var/www/sites/drupal/db/database.sql
      nohup phantomjs --webdriver=8643 > /dev/null 2>&1 &
   SHELL
 end
+
