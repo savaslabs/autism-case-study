@@ -5,3 +5,8 @@
  * Date: 7/21/16
  * Time: 13:05
  */
+
+/**
+ * @file
+ * A module that runs code to turn on all other modules
+ */
