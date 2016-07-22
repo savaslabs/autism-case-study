@@ -94,6 +94,7 @@ Vagrant.configure(2) do |config|
      drush updb
      drush fra -y
      drush cc all
+     drush pm-enable acs_master -y
   SHELL
 end
 

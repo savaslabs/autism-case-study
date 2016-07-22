@@ -1,0 +1,5 @@
+<?php
+/**
+ * @file
+ * Runs setup procedures as required by the ACS Master module.
+ */
