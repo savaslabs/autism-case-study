@@ -3,3 +3,115 @@
  * @file
  * Runs setup procedures as required by the ACS Master module.
  */
+
+/**
+ * @function
+ * Enables each module listed within the passed array.
+ *
+ * This function will be repeatedly called throughout file by hook_update_N.
+ */
+function _acs_master_enable_modules($arr_modules) {
+  // 1. Loop through array and enable each module
+  foreach ($arr_modules as $module_name) {
+    module_enable($module_name);
+  }
+}
+
+/**
+ * @function
+ * Disables each module listed within the passed array.
+ */
+function _acs_master_disable_modules($arr_modules) {
+  // 1. Loop through array and disable each module
+  foreach ($arr_modules as $module_name) {
+    module_disable($module_name);
+  }
+}
+
+/**
+ * @function
+ * Implements hook_install().
+ *
+ * This function runs the first time this module ACS Master is enabled. It
+ * should contain all the hook_update_N functions.
+ */
+function acs_master_install() {
+  // 1. Call first hook udpate that enables the core and first contrib modules
+  acs_master_update_7500();
+}
+
+/**
+ * @function
+ * Implements hook_uninstall().
+ *
+ * This function disables all the modules enabled in ACS Master.
+ */
+function acs_master_uninstall() {
+  // 1. Create an array listing all module names
+  $arr_modules = array(
+    // core modules
+    'aggregator',
+    'blog',
+    'contact',
+    'dblog',
+    'field_ui',
+    'file',
+    'forum',
+    'image',
+    'menu',
+    'search',
+    // contrib modules
+    'backup_migrate',
+    'date',
+    'devel',
+    'features',
+    'features_extra',
+    'pathauto',
+    'strongarm',
+    'views',
+    'webform'
+  );
+  // 2. Disable each module in the array
+  _acs_master_disable_modules($arr_modules as $module_name);
+}
+
+/**
+ * @function
+ * Implements hook_update_N().
+ *
+ * Enables the following CORE modules:
+ * aggregator, blog, contact, database_logging, field_UI, file, forum,
+ * image, menu, and search
+ *
+ * Enables the following CONTRIB modules:
+ * backup_migrate, ctools, date, devel, features, features_extra, pathauto,
+ * strongarm, token, views, webform
+ */
+function acs_master_update_7500() {
+  // 1. Create an array listing all module names
+  $arr_modules = array(
+    // core modules
+    'aggregator',
+    'blog',
+    'contact',
+    'dblog',
+    'field_ui',
+    'file',
+    'forum',
+    'image',
+    'menu',
+    'search',
+    // contrib modules
+    'backup_migrate',
+    'date',
+    'devel',
+    'features',
+    'features_extra',
+    'pathauto',
+    'strongarm',
+    'views',
+    'webform'
+  );
+  // 2. Enable each module in the array
+  _acs_master_enable_modules($arr_modules);
+}
