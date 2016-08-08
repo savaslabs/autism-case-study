@@ -1,0 +1,70 @@
+language: ruby
+sudo: required
+dist: trusty
+
+addons:
+  hosts:
+    - autism
+
+env:
+  global:
+    - DOCKER_VERSION=1.10.1-0~trusty
+    - DOCKER_COMPOSE_VERSION=1.7.0
+
+services:
+  - docker
+
+git:
+  depth: 5
+
+cache:
+  directories:
+  - $TRAVIS_BUILD_DIR/cache
+  - $TRAVIS_BUILD_DIR/.composer/cache
+
+before_install:
+  - sudo service memcached stop
+#  - pip install --user awscli ## may add this later...
+  - export PATH=$PATH:$HOME/.local/bin
+  - apt-cache madison docker-engine
+  - sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-engine=${DOCKER_VERSION}
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - docker version
+  - docker-compose version
+  - cp $TRAVIS_BUILD_DIR/default/database.sql $TRAVIS_BUILD_DIR/docker-runtime/mariadb-init/database.sql
+  - ls -l $TRAVIS_BUILD_DIR/docker-runtime/mariadb-init
+
+install:
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - make travis
+  - docker-compose exec php /bin/sh -c "chown -Rf www-data:www-data /var/www/html"
+  - docker-compose exec mariadb mysql -u drupal -pdrupal -e 'show databases;'
+  - docker-compose exec mariadb mysql -u drupal -pdrupal -h mariadb -e 'status;'
+  - docker-compose exec mariadb mysql -u drupal -pdrupal -e 'status;'
+  - docker-compose exec --user 82 php /bin/sh -c "mysql -udrupal -pdrupal -h mariadb drupal -e 'SHOW TABLES;'"
+  - make initialize-travis
+  - set -e; docker-compose exec php /bin/sh -c "cd /var/www/html/tests; composer install; bin/behat --init"
+  - set -e; docker-compose exec php tests/bin/phpcs --config-set installed_paths /var/www/html/tests/vendor/drupal/coder/coder_sniffer
+
+script:
+  - set -e; docker-compose exec php tests/bin/phpcs --standard=Drupal --extensions=php,module,inc,install,test,profile,theme www/sites/all/modules/custom --ignore=*.css,*.min.js,*addthis_widget.js,*features.*.inc
+  - set -e; docker-compose exec php tests/bin/behat -c tests/behat.yml
+#  - docker exec -it duketoday_php php -l sites/all/modules/project
+#  - docker exec -it duketoday_php php -l sites/all/themes/duke_today_theme
+#  - docker exec -it duketoday_php bin/phpcs --standard=Drupal tests sites/all/modules/project sites/all/themes/duke_today_theme --ignore=*.css,*.min.js,*addthis_widget.js,*features.*.inc
+#  - docker exec -it duketoday_php bin/behat -c tests/behat.yml --tags=~@failing -f progress -s migration
+#  - docker exec -it duketoday_php bin/behat -c tests/behat.yml --tags=~@failing -f progress -s homepage
+#  - docker exec -it duketoday_php bin/behat -c tests/behat.yml --tags=~@failing -f progress -s contact
+#  - docker exec -it duketoday_php bin/behat -c tests/behat.yml --tags=~@failing -f progress -s entities
+#  - docker exec -it duketoday_php bin/behat -c tests/behat.yml --tags=~@failing -f progress -s stories
+
+after_failure:
+#  - docker exec -it duketoday_php bin/upload-textfiles "/var/log/httpd/ssl_request_log"
+#  - docker exec -it duketoday_php bin/upload-textfiles "/var/log/httpd/ssl_access_log"
+#  - docker exec -it duketoday_php bin/upload-textfiles "/var/log/httpd/ssl_error_log"
+#  - docker exec -it duketoday_php bin/drush ws --count=1000 --extended > $TRAVIS_BUILD_DIR/tests/logs/watchdog.log
+#  - docker exec -it duketoday_php bin/upload-textfiles "$TRAVIS_BUILD_DIR/tests/logs/*.log"
+#  - docker exec -it duketoday_php bin/upload-screenshots "$TRAVIS_BUILD_DIR/tests/logs/*.png"
