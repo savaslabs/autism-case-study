@@ -6,11 +6,10 @@
  */
 
 /**
- * @array
  * Array containing all the enabled modules.
  *
  * Modules are listed in proper order for enabling.
- * This array will be updated each time a new module is added to project.
+ * Array will be updated each time a new module is added to project.
  */
 $arr_modules_ALL = array(
   // Core modules.
