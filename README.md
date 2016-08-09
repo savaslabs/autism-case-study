@@ -13,8 +13,6 @@ In your `/etc/hosts` file add:
 127.0.0.1  mydrupalsite.dev
 `
 
-Copy the initial seed database from default/database.sql to docker-runtime/mariadb-init/database.sql
-
 * Run `make install`
 * If the drush alias file does not copy properly (all of the drush steps will throw an error), run `make initialize`.
 
