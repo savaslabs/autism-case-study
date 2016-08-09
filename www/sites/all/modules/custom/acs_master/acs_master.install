@@ -1,17 +1,74 @@
 <?php
+
 /**
  * @file
  * Runs setup procedures as required by the ACS Master module.
  */
 
 /**
+ * @array
+ * Array containing all the enabled modules.
+ *
+ * Modules are listed in proper order for enabling.
+ * This array will be updated each time a new module is added to project.
+ */
+$arr_modules_ALL = array(
+  // Core modules.
+  'aggregator',
+  'blog',
+  'contact',
+  'dblog',
+  'field_ui',
+  'file',
+  'forum',
+  'image',
+  'menu',
+  'search',
+  // Contrib modules.
+  'backup_migrate',
+  'devel',
+  'features',
+  'ctools',
+  'date',
+  'views',
+  'strongarm',
+  'features_extra',
+  'token',
+  'pathauto',
+  'webform',
+);
+
+/**
+ * @function
+ * Implements hook_install().
+ *
+ * This function runs the first time this module ACS Master is enabled.
+ * It enables all the required modules.
+ */
+function acs_master_install($arr_modules_ALL) {
+  // 1. Enable each module in the input array.
+  _acs_master_enable_modules($arr_modules_ALL);
+}
+
+/**
+ * @function
+ * Implements hook_uninstall().
+ *
+ * This function disables all the modules enabled in acs_master_install.
+ */
+function acs_master_uninstall($arr_modules_ALL) {
+  // 1. Reverse the order of the input array.
+  $arr_reverse = array_reverse($arr_modules_ALL);
+  // 2. Disable each module in the reversed array.
+  _acs_master_disable_modules($arr_reverse);
+}
+
+/**
  * @function
  * Enables each module listed within the passed array.
- *
- * This function will be repeatedly called throughout file by hook_update_N.
  */
 function _acs_master_enable_modules($arr_modules) {
-  // 1. Loop through array and enable each module
+  // 1. Loop through array and enable each module.
   foreach ($arr_modules as $module_name) {
     module_enable($module_name);
   }
@@ -22,57 +79,10 @@ function _acs_master_enable_modules($arr_modules) {
  * Disables each module listed within the passed array.
  */
 function _acs_master_disable_modules($arr_modules) {
-  // 1. Loop through array and disable each module
+  // 1. Loop through array and disable each module.
   foreach ($arr_modules as $module_name) {
     module_disable($module_name);
   }
-}
-
-/**
- * @function
- * Implements hook_install().
- *
- * This function runs the first time this module ACS Master is enabled. It
- * should contain all the hook_update_N functions.
- */
-function acs_master_install() {
-  // 1. Call first hook udpate that enables the core and first contrib modules
-  acs_master_update_7500();
-}
-
-/**
- * @function
- * Implements hook_uninstall().
- *
- * This function disables all the modules enabled in ACS Master.
- */
-function acs_master_uninstall() {
-  // 1. Create an array listing all module names
-  $arr_modules = array(
-    // core modules
-    'aggregator',
-    'blog',
-    'contact',
-    'dblog',
-    'field_ui',
-    'file',
-    'forum',
-    'image',
-    'menu',
-    'search',
-    // contrib modules
-    'backup_migrate',
-    'date',
-    'devel',
-    'features',
-    'features_extra',
-    'pathauto',
-    'strongarm',
-    'views',
-    'webform'
-  );
-  // 2. Disable each module in the array
-  _acs_master_disable_modules($arr_modules as $module_name);
 }
 
 /**
@@ -88,9 +98,9 @@ function acs_master_uninstall() {
  * strongarm, token, views, webform
  */
 function acs_master_update_7500() {
-  // 1. Create an array listing all module names
+  // 1. Create an array listing all module names for this update.
   $arr_modules = array(
-    // core modules
+    // Core modules.
     'aggregator',
     'blog',
     'contact',
@@ -101,17 +111,19 @@ function acs_master_update_7500() {
     'image',
     'menu',
     'search',
-    // contrib modules
+    // Contrib modules.
     'backup_migrate',
-    'date',
     'devel',
     'features',
-    'features_extra',
-    'pathauto',
-    'strongarm',
+    'ctools',
+    'date',
     'views',
-    'webform'
+    'strongarm',
+    'features_extra',
+    'token',
+    'pathauto',
+    'webform',
   );
-  // 2. Enable each module in the array
+  // 2. Enable each module in the array.
   _acs_master_enable_modules($arr_modules);
 }
