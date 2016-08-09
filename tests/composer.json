@@ -2,7 +2,8 @@
   "require": {
     "drupal/drupal-extension": "*",
     "behat/mink-browserkit-driver": "*",
-    "behat/mink-selenium2-driver": "*"
+    "behat/mink-selenium2-driver": "*",
+    "drupal/coder": "^8.2"
   },
   "config": {
     "bin-dir": "bin/"

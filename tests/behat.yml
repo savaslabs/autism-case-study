@@ -9,19 +9,18 @@ default:
         - Drupal\DrupalExtension\Context\DrushContext
   extensions:
     Behat\MinkExtension:
-      javascript_session: selenium2
-      browser_name: phantomjs
       goutte: ~
       selenium2:
-        wd_host: 'http://localhost:8643/wd/hub'
-      base_url: http://mydrupalsite.dev
+        browser: 'chrome'
+        wd_host: selenium:4444/wd/hub
+      base_url: http://nginx
     Drupal\DrupalExtension:
       blackbox: ~
       api_driver: 'drupal' 
       drush:
-        alias: 'local'
+        alias: 'dev'
       drupal: 
-        drupal_root: '/var/www/sites/drupal/www' 
+        drupal_root: '/var/www/html/www'
       region_map:
         footer: "#footer"
         content: ".content"
