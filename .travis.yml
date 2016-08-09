@@ -32,6 +32,7 @@ before_install:
   - docker-compose version
   - cp $TRAVIS_BUILD_DIR/default/database.sql $TRAVIS_BUILD_DIR/docker-runtime/mariadb-init/database.sql
   - ls -l $TRAVIS_BUILD_DIR/docker-runtime/mariadb-init
+  - rm /etc/apparmor.d/docker-engine
 
 install:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
