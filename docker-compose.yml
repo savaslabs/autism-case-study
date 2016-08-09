@@ -18,7 +18,9 @@ services:
     environment:
       PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
       PHP_XDEBUG_ENABLED: 1 # Set 1 to enable.
-      NGINX_DOCROOT: www # Relative path inside the /var/www/html/ directory.
+      PHP_SITE_NAME: dev
+      PHP_HOST_NAME: localhost:8000
+      PHP_DOCROOT: www #set this the same as NGINX_DOCROOT
     volumes:
       - .:/var/www/html #is this volume shared?  What about writing to here?
     depends_on:

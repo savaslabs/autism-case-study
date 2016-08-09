@@ -5,6 +5,7 @@ dist: trusty
 addons:
   hosts:
     - autism
+  artifacts: true
 
 env:
   global:

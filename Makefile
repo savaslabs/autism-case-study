@@ -21,17 +21,19 @@ stop:
 refresh:
 	make db -B
 db:
-	-docker-compose exec --user 82 php drush @dev sql-cli < /var/www/html/docker-runtime/mariadb-init/database.sql
+	-docker exec -it autismcasestudy_mariadb_1 /bin/sh -c "mysql -u drupal -pdrupal drupal < /docker-entrypoint-initdb.d/database.sql"
 clean:
 	make stop
 	-docker rm $(docker-compose ps -q)
 	-docker-compose ps
 initialize:
 	make initialize-alias
+	make refresh
 	make initialize-travis
 initialize-travis:
 	-set -e; docker-compose exec --user 82 php drush @dev updb
 	-set -e; docker-compose exec --user 82 php drush @dev fra -y
+	-set -e; docker-compose exec --user 82 php drush @dev cc all
 	-set -e; docker-compose exec --user 82 php drush @dev cc all
 	-set -e; docker-compose exec --user 82 php drush @dev pm-enable acs_master -y
 	-docker-compose ps
