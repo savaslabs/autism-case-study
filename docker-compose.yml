@@ -1,0 +1,68 @@
+version: "2"
+
+services:
+  mariadb:
+    image: wodby/drupal-mariadb
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_DATABASE: drupal
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql-data:/var/lib/mysql # volume is local to container, not shared with host
+      - ./default:/docker-entrypoint-initdb.d # Place init .sql file(s) here, shared with host
+
+  php:
+    image: codementality/drupal-php:5.6 # Allowed: 7.0, 5.6.
+    environment:
+      PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
+      PHP_XDEBUG_ENABLED: 1 # Set 1 to enable.
+      PHP_SITE_NAME: dev
+      PHP_HOST_NAME: localhost:8000
+      PHP_DOCROOT: www #set this the same as NGINX_DOCROOT
+    volumes:
+      - .:/var/www/html #is this volume shared?  What about writing to here?
+    depends_on:
+      - mariadb
+
+  nginx:
+    image: wodby/drupal-nginx
+    environment:
+      NGINX_UPSTREAM_NAME: php
+      NGINX_DOCROOT: www # Relative path inside the /var/www/html/ directory.
+      DRUPAL_VERSION: 7 # Allowed: 7, 8.
+    volumes_from:
+      - php
+    depends_on:
+      - php
+    ports:
+      - "80:80"
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "8002:8025"
+    depends_on:
+      - nginx
+
+  selenium:
+    container_name: selenium
+    image: selenium/standalone-chrome:2.53.0
+
+#  redis:
+#    image: redis:3.2-alpine
+
+#  memcached:
+#    image: memcached:1.4-alpine
+
+#  solr:
+#    image: solr:5.5-alpine
+#    volumes:
+#      - ./docker-runtime/solr:/opt/solr/server/solr/mycores
+#    ports:
+#      - "8003:8983"
+
+volumes:
+  mysql-data:
+    driver: local

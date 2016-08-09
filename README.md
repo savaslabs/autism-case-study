@@ -1,6 +1,8 @@
 # autism-case-study
 Drupal 7 case study site, which is an informational site for Autism.  This is Ro Wang's Learning Site.
 
+The docker container portion of this project is based on large part on the Wodby Docker4Drupal project, available at https://github.com/Wodby/docker4drupal
+
 ## Setup
 
 
@@ -8,50 +10,75 @@ Drupal 7 case study site, which is an informational site for Autism.  This is Ro
 In your `/etc/hosts` file add:
 
 `
-192.168.33.10  mydrupalsite.dev
+127.0.0.1  mydrupalsite.dev
 `
 
-Copy the initial seed database from default/database.sql to db/database.sql
-
-Copy default/settings.php to www/sites/default/settings.php
-
-Run `vagrant up --provision`
+* Run `make install`
+* If the drush alias file does not copy properly (all of the drush steps will throw an error), run `make initialize`.
 
 ## Ongoing
 
 To start the site:
 `
-vagrant up
+make up
 `
 
-To halt the site
+To halt the site:
 `
-vagrant halt
-`
-
-To suspend the site
-`
-vagrant suspend
+make down
 `
 
-To reprovision your site (using a database dump stored in db/database.sql)
+To reprovision your site (using a database dump stored in db/database.sql):
 `
-vagrant provision
-`
-
-To shell into the server
-`
-vagrant ssh
+make install
 `
 
-To restart phantomjs
+If all containers are not in the "up" state, then:
+`
+make up
+`
 
-* Shell into the server (`vagrant ssh`)
-* Navigate to /var/www/sites/drupal/
-* Execute `/default/start-phantomjs`
+To halt the containers:
+`
+make stop
+`
 
-## Configuration information
-### Default mysql config info
+To remove the containers:
+`
+make clean
+`
+
+To shell into the server:
+`
+docker-compose exec --user 82 php /bin/sh
+`
+
+To reinitialize your drupal site (run the drush provisioning commands):
+`
+make initialize
+`
+
+To initialize the behat testing environment:
+`
+make initialize-testing
+`
+
+To run tests:
+`
+make test
+`
+
+To refresh the database:
+`
+make refresh
+`
+
+To build containers again:
+`
+make build
+`
+
+### MySQL Credentials:
 
 * database:  drupal
 * user:      drupal

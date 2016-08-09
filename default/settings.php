@@ -252,7 +252,7 @@ $databases = array (
       'database' => 'drupal',
       'username' => 'drupal',
       'password' => 'drupal',
-      'host' => 'localhost',
+      'host' => 'mariadb',
       'port' => '',
       'driver' => 'mysql',
       'prefix' => '',
@@ -290,7 +290,7 @@ $update_free_access = FALSE;
  *   $drupal_hash_salt = file_get_contents('/home/example/salt.txt');
  *
  */
-$drupal_hash_salt = '44N-ASBJ2pmxUxCno68B9J4fpWrNpEN3YtfVa82OkTA';
+$drupal_hash_salt = 'Oc3sab-ht0H-qZGPGHeKnz0rDQIlatSBjPvjISWrBPw';
 
 /**
  * Base URL (optional).

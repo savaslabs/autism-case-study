@@ -1,6 +1,8 @@
 ## Vagrant cache
 .vagrant
 
+## Docker runtime
+## docker-runtime/
 ## Nohup file
 nohup.out
 ## Vendor folder from Symfony2
