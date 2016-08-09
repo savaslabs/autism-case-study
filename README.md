@@ -3,6 +3,8 @@ Drupal 7 case study site, which is an informational site for Autism.  This is Ro
 
 The docker container portion of this project is based on large part on the Wodby Docker4Drupal project, available at https://github.com/Wodby/docker4drupal
 
+[![Build Status](https://travis-ci.org/savaslabs/autism-case-study.svg?branch=develop)](https://travis-ci.org/savaslabs/autism-case-study)
+
 ## Setup
 
 
@@ -25,7 +27,7 @@ make up
 
 To halt the site:
 `
-make down
+make stop
 `
 
 To reprovision your site (using a database dump stored in db/database.sql):
@@ -36,11 +38,6 @@ make install
 If all containers are not in the "up" state, then:
 `
 make up
-`
-
-To halt the containers:
-`
-make stop
 `
 
 To remove the containers:
