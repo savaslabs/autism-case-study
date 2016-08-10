@@ -36,11 +36,12 @@ install:
   - docker-compose exec php /bin/sh -c "chown -Rf www-data:www-data /var/www/html"
   # - make initialize-travis
   - docker-compose exec php /bin/sh -c "cd /var/www/html/tests; composer install; bin/behat --init"
-  - docker-compose exec php tests/bin/phpcs --config-set installed_paths /var/www/html/tests/vendor/drupal/coder/coder_sniffer
+  # - docker-compose exec php tests/bin/phpcs --config-set installed_paths /var/www/html/tests/vendor/drupal/coder/coder_sniffer
 
 script:
+
   - docker-compose exec php tests/bin/phpcs --standard=Drupal --extensions=php,module,inc,install,test,profile,theme www/sites/all/modules/custom --ignore=*.css,*.min.js,*addthis_widget.js,*features.*.inc
-  #- docker exec duketoday_php bin/phpcs --standard=Drupal tests sites/all/modules/project sites/all/themes/duke_today_theme --ignore=*.css,*.min.js,*addthis_widget.js,*features.*.inc
+  # - docker exec autismcasestudy_php_1 bin/phpcs --standard=Drupal tests www/sites/all/modules/project sites/all/themes/duke_today_theme --ignore=*.css,*.min.js,*addthis_widget.js,*features.*.inc
 #  - set -e; docker-compose exec php tests/bin/behat -c tests/behat.yml
 #  - docker exec -it duketoday_php php -l sites/all/modules/project
 #  - docker exec -it duketoday_php php -l sites/all/themes/duke_today_theme
