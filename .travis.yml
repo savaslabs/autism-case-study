@@ -35,6 +35,7 @@ install:
   - make install
   - docker-compose exec php /bin/sh -c "chown -Rf www-data:www-data /var/www/html"
   - make initialize-testing
+  - travis_debug
   # - make initialize-travis
   # - docker-compose exec php /bin/sh -c "cd /var/www/html/tests; composer install; bin/behat --init"
   # - docker-compose exec php tests/bin/phpcs --config-set installed_paths /var/www/html/tests/vendor/drupal/coder/coder_sniffer
