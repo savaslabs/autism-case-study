@@ -290,7 +290,7 @@ $update_free_access = FALSE;
  *   $drupal_hash_salt = file_get_contents('/home/example/salt.txt');
  *
  */
-$drupal_hash_salt = 'Oc3sab-ht0H-qZGPGHeKnz0rDQIlatSBjPvjISWrBPw';
+$drupal_hash_salt = 'g8q7MDrcFNjP1Xhx7EYtwRGMAp816ZbkaAhso2QAiq0';
 
 /**
  * Base URL (optional).
