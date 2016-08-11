@@ -33,7 +33,7 @@ function _acs_master_all_modules() {
     'date',
     'views',
     'strongarm',
-    'features_extra',
+    // 'features_extra', (8/11: removed for now).
     'token',
     'pathauto',
     'webform',
@@ -152,7 +152,7 @@ function acs_master_update_7100() {
     'date',
     'views',
     'strongarm',
-    'features_extra',
+    // 'features_extra', (8/11: removed for now).
     'token',
     'pathauto',
     'webform',
