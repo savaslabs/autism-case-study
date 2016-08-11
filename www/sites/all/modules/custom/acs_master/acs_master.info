@@ -1,4 +1,3 @@
 name = ACS Master
 description = Master module that runs code to turn on all the other modules
 core = 7.x
-

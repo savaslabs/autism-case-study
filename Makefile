@@ -9,8 +9,7 @@ install:
 	- docker-compose exec -T --user 82 php tests/bin/phpcs --config-set installed_paths /var/www/html/tests/vendor/drupal/coder/coder_sniffer
 	- make provision
 provision:
-	- docker-compose exec --user 82 php drush @dev
-	- docker-compose exec --user 82 php drush @dev updb
+	- docker-compose exec --user 82 php drush @dev updb -y
 	- docker-compose exec --user 82 php drush @dev fra -y
 	- docker-compose exec --user 82 php drush @dev cc all
 	- docker-compose exec --user 82 php drush @dev pm-enable acs_master -y
