@@ -1,13 +1,6 @@
-## Vagrant cache
-.vagrant
+.idea/
+docker-runtime/
 
-## Docker runtime
-## docker-runtime/
-## Nohup file
-nohup.out
-## Vendor folder from Symfony2
+bin/
 vendor/
-## bin folder where behat executable is stored
-tests/bin/
-## database dumps
-*.sql
+

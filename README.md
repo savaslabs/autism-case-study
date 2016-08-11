@@ -45,19 +45,14 @@ To remove the containers:
 make clean
 `
 
-To shell into the server:
+To shell into the php container:
 `
 docker-compose exec --user 82 php /bin/sh
 `
 
 To reinitialize your drupal site (run the drush provisioning commands):
 `
-make initialize
-`
-
-To initialize the behat testing environment:
-`
-make initialize-testing
+make provision
 `
 
 To run tests:
@@ -65,14 +60,9 @@ To run tests:
 make test
 `
 
-To refresh the database:
+To updates tests for changes in behat.yml
 `
-make refresh
-`
-
-To build containers again:
-`
-make build
+make update-tests
 `
 
 ### MySQL Credentials:
