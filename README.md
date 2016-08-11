@@ -45,6 +45,11 @@ To remove the containers:
 make clean
 `
 
+To remove the data container (where the database is stored):
+`
+make clean-data
+`
+
 To shell into the php container:
 `
 docker-compose exec --user 82 php /bin/sh
