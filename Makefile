@@ -29,6 +29,9 @@ clean:
 	- docker rm $(docker-compose ps -q)
 	- docker-compose ps
 
+clean-data:
+	- docker volume rm autismcasestudy_mysql-data
+
 stop:
 	- docker-compose down
 
