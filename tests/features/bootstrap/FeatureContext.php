@@ -47,7 +47,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   /**
    * Test if role has permission.
    *
-   * @Then I can see that the :arg1 role has the :arg2 permissions
+   * @Then I can see that the :arg1 role has the :arg2 permission
    *
    * This function is a custom Gerkin step used in the Roles & Permissions testing
    * in the "roles-permissions.feature" test file.
@@ -59,4 +59,23 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       throw new Exception(sprintf('Role %s does not have the "%s" permission.', $arg1, $arg2));
     }
   }
+
+  /**
+   * Converts taxonomy permission string.
+   *
+   * @param string $permission
+   *   Permission string to convert.
+   *
+   * @return string
+   *   Converted permission.
+   */
+  public function modifyPermission($permission) {
+    if (strpos($permission, ' terms in ') > 0) {
+      $vocabulary_name = substr($permission, strpos($permission, ' terms in ') + strlen(' terms in '));
+      $vocabulary = taxonomy_vocabulary_machine_name_load($vocabulary_name)->vid;
+      return substr($permission, 0, strpos($permission, ' terms in ') + strlen(' terms in ')) . $vocabulary;
+    }
+    return $permission;
+  }
+
 }

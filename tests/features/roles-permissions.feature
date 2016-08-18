@@ -3,15 +3,17 @@ Feature: Checks Roles and Permissions.
   I need to be able to tell if created roles have the right permissions
 
   # Scenario 1
+  @javascript @api
   Scenario: Check that "staff" and "site administrator" roles exist
     Given I am logged in as a user with the "administrator" role
     Then I can see that the "staff" role exists
     And I can see that the "site administrator" role exists
 
   # Scenario 2
+  @javascript @api
   Scenario Outline: Check the "staff" role has the proper permissions
     Given I am logged in as a user with the "administrator" role
-    Then I can see that the "staff" role has the "<permission>" permissions
+    Then I can see that the "staff" role has the "<permission>" permission
     Examples:
       | permission |
       | author and publish content |
@@ -20,9 +22,10 @@ Feature: Checks Roles and Permissions.
       | manage menus |
 
   # Scenario 3
+  @javascript @api
   Scenario Outline: Check the "site administrator" role has all permissions
     Given I am logged in as a user with the "administrator" role
-    Then I can see that the "site administrator" role has the "<permission>" permissions
+    Then I can see that the "site administrator" role has the "<permission>" permission
     Examples:
       | permission |
       | author and publish content |
