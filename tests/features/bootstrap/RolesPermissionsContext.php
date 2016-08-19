@@ -91,7 +91,7 @@ class RolesPermissionsContext extends RawDrupalContext implements SnippetAccepti
   /**
    * Checks that a role has all available permissions.
    *
-   * @Then I can see that the :role role has all available permissions.
+   * @Then I can see that the :role role has all available permissions
    */
   public function iCanSeeThatTheRoleHasAllAvailablePermissions($role) {
     $role_permissions = $this->getPermissionsForRole($role);
