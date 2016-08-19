@@ -55,6 +55,11 @@ To shell into the php container:
 docker-compose exec --user 82 php /bin/sh
 `
 
+To shell into the mySQL container:
+`
+docker-compose exec mariadb /bin/sh
+`
+
 To reinitialize your drupal site (run the drush provisioning commands):
 `
 make provision
