@@ -2,6 +2,7 @@ name = Roles & Permissions
 description = Sets roles and corresponding permissions
 core = 7.x
 package = Features
+version = 7.x-1.0-alpha1
 dependencies[] = aggregator
 dependencies[] = backup_migrate
 dependencies[] = block
