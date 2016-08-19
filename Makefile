@@ -22,7 +22,7 @@ test:
 	- docker-compose exec --user 82 php tests/bin/behat -c tests/behat.yml
 
 phpcs:
-	- docker-compose exec --user 82 php tests/bin/phpcs --standard=Drupal --extensions=php,module,inc,install,test,profile,theme www/sites/all/modules/custom --ignore=*.css,*.min.js,*addthis_widget.js,*features.*.inc
+	- docker-compose exec --user 82 php tests/bin/phpcs --standard=Drupal --extensions=php,module,inc,install,test,profile,theme tests/features www/sites/all/modules/custom --ignore=*.css,*.min.js,*addthis_widget.js,*features.*.inc
 
 clean:
 	make stop
