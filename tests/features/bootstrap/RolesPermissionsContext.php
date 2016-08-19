@@ -1,17 +1,20 @@
 <?php
 
+/**
+ * @file
+ * RolesPermissionsContext class.
+ */
+
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Behat\Behat\Context\SnippetAcceptingContext;
-use Behat\Gherkin\Node\PyStringNode;
-use Behat\Gherkin\Node\TableNode;
-use Behat\Behat\Tester\Exception\PendingException;
 
 /**
  * Defines application features from the specific context.
  */
 class RolesPermissionsContext extends RawDrupalContext implements SnippetAcceptingContext {
 
-  private $roles_and_permissions;
+  private $rolesAndPermissions;
+
   /**
    * Initializes context.
    *
@@ -20,7 +23,7 @@ class RolesPermissionsContext extends RawDrupalContext implements SnippetAccepti
    * context constructor through behat.yml.
    */
   public function __construct(array $roles_and_permissions) {
-    $this->roles_and_permissions = $roles_and_permissions;
+    $this->rolesAndPermissions = $roles_and_permissions;
   }
 
   /**
@@ -28,8 +31,8 @@ class RolesPermissionsContext extends RawDrupalContext implements SnippetAccepti
    *
    * @Then I can see that the :role role exists
    *
-   * This function is a custom Gerkin step used in the Roles & Permissions testing
-   * in the "roles-permissions.feature" test file.
+   * This function is a custom Gerkin step used in the Roles & Permissions
+   * testing in the "roles-permissions.feature" test file.
    */
   public function iCanSeeThatTheRoleExists($role) {
     $role_exists = FALSE;
@@ -45,14 +48,15 @@ class RolesPermissionsContext extends RawDrupalContext implements SnippetAccepti
   }
 
   /**
+   * Checks that a role has all granted permissions, as outlined in behat.yml.
+   *
    * @Then I can see that the :role role has all granted permissions
    */
-  public function iCanSeeThatTheRoleHasAllGrantedPermissions($role)
-  {
-    // Get permissions to check passed in from behat.yml
-    $permissions_to_check = ($this->roles_and_permissions[$role]);
+  public function iCanSeeThatTheRoleHasAllGrantedPermissions($role) {
+    // Get permissions to check passed in from behat.yml.
+    $permissions_to_check = ($this->rolesAndPermissions[$role]);
     // Convert any taxonomy permissions by vocabulary to vocabulary IDs.
-    foreach($permissions_to_check as $key => $perm) {
+    foreach ($permissions_to_check as $key => $perm) {
       $perm = $this->modifyPermission($perm);
       $permissions_to_check[$key] = $perm;
     }
@@ -63,7 +67,7 @@ class RolesPermissionsContext extends RawDrupalContext implements SnippetAccepti
     // Create a missing permissions array.
     $missing_perms = array_diff($permissions_to_check, $role_permissions);
     // Check that all permissions for the role are in the list to check, if not
-    //   throw an Exception and list the missing permissions.
+    // throw an Exception and list the missing permissions.
     if (!empty($missing_perms)) {
       $missing_perms_string = implode(", ", $missing_perms);
       throw new Exception(sprintf('The %s role is missing these permissions: %s', $role, $missing_perms_string));
@@ -77,7 +81,7 @@ class RolesPermissionsContext extends RawDrupalContext implements SnippetAccepti
     // Get any differences.
     $extra_permissions = array_diff($all_less_checked_permissions, $all_less_role_permissions);
     // If there are differences (array is not empty), throw and Exception and
-    //   list the extra permissions.
+    // list the extra permissions.
     if (!empty($extra_permissions)) {
       $extra_perms = implode(", ", $extra_permissions);
       throw new Exception(sprintf('The %s role has extra permissions: %s', $role, $extra_perms));
@@ -85,10 +89,11 @@ class RolesPermissionsContext extends RawDrupalContext implements SnippetAccepti
   }
 
   /**
-   * @Then I can see that the :role role has all available permissions
+   * Checks that a role has all available permissions.
+   *
+   * @Then I can see that the :role role has all available permissions.
    */
-  public function iCanSeeThatTheRoleHasAllAvailablePermissions($role)
-  {
+  public function iCanSeeThatTheRoleHasAllAvailablePermissions($role) {
     $role_permissions = $this->getPermissionsForRole($role);
     // Gets all available permissions in this drupal installation.
     $all_permissions = $this->getAllAvailablePermissions();
@@ -104,8 +109,9 @@ class RolesPermissionsContext extends RawDrupalContext implements SnippetAccepti
   /**
    * Converts taxonomy permission strings to use vocabulary ids.
    *
-   * @param $permission
+   * @param string $permission
    *   The original permissions string.
+   *
    * @return string
    *   The modified permissions string.
    */
@@ -131,18 +137,19 @@ class RolesPermissionsContext extends RawDrupalContext implements SnippetAccepti
     $permissions = array_keys($permissions_by_role);
     // Sort the array by value.
     asort($permissions);
-    // Returns the array
+    // Returns the array.
     return $permissions;
   }
 
   /**
    * Returns an array of permissions granted to a role.
    *
-   * @param $role
+   * @param string $role
    *   The role to check.
-   * @param $inherited
+   * @param bool $inherited
    *   Boolean, also returns permissions for authenticated & anonymous
    *     user roles if TRUE.
+   *
    * @return array
    *   The array of permissions granted to the role, in alphabetical order.
    */
@@ -189,4 +196,5 @@ class RolesPermissionsContext extends RawDrupalContext implements SnippetAccepti
     asort($role_permissions);
     return $role_permissions;
   }
+
 }
