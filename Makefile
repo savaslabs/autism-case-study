@@ -19,6 +19,7 @@ update-tests:
 	- docker-compose exec --user 82 php /bin/sh -c "cd /var/www/html/tests; composer update; bin/behat --init"
 
 test:
+	- make phpcs
 	- docker-compose exec --user 82 php tests/bin/behat -c tests/behat.yml
 
 phpcs:
