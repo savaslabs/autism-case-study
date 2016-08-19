@@ -1,12 +1,68 @@
 default:
   suites:
     default:
+      paths:
+        - %paths.base%/features/default
       contexts:
         - FeatureContext
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\MessageContext
         - Drupal\DrupalExtension\Context\DrushContext
+    rolesperms:
+      paths:
+        - %paths.base%/features/rolespermissions
+      contexts:
+        - RolesPermissionsContext:
+            roles_and_permissions:
+              staff:
+                - 'access content'
+                - 'view own unpublished content'
+                - 'access content overview'
+                - 'create article content'
+                - 'create page content'
+                - 'create blog content'
+                - 'create forum content'
+                - 'delete any article content'
+                - 'delete any page content'
+                - 'delete any blog content'
+                - 'delete any forum content'
+                - 'delete own article content'
+                - 'delete own page content'
+                - 'delete own blog content'
+                - 'delete own forum content'
+                - 'edit any article content'
+                - 'edit any page content'
+                - 'edit any blog content'
+                - 'edit any forum content'
+                - 'edit own article content'
+                - 'edit own page content'
+                - 'edit own blog content'
+                - 'edit own forum content'
+                - 'use text format filtered_html'
+                - 'access comments'
+                - 'administer comments'
+                - 'edit own comments'
+                - 'post comments'
+                - 'skip comment approval'
+                - 'create webform content'
+                - 'delete any webform content'
+                - 'delete own webform content'
+                - 'edit any webform content'
+                - 'edit own webform content'
+                - 'administer menu'
+              authenticated user:
+                - 'access comments'
+                - 'post comments'
+                - 'skip comment approval'
+                - 'use text format filtered_html'
+                - 'access content'
+              anonymous user:
+                - 'access comments'
+                - 'access content'
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
   extensions:
     Behat\MinkExtension:
       goutte: ~
