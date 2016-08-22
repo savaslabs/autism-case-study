@@ -121,7 +121,6 @@ function acs_master_uninstall() {
   module_disable($arr_reverse);
 }
 
-
 /**
  * Implements hook_update_N().
  *
