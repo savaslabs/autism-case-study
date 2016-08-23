@@ -340,6 +340,7 @@ function roles_permissions_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'site administrator' => 'site administrator',
+      'staff' => 'staff',
     ),
     'module' => 'menu',
   );
@@ -1088,7 +1089,6 @@ function roles_permissions_user_default_permissions() {
     'name' => 'use text format filtered_html',
     'roles' => array(
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'filter',
