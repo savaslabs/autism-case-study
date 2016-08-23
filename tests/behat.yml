@@ -61,6 +61,12 @@ default:
                 - 'access comments'
                 - 'access content'
         - Drupal\DrupalExtension\Context\DrupalContext
+    taxonomy:
+      paths:
+        - %paths.base%/features/taxonomy
+      contexts:
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
   extensions:
     Behat\MinkExtension:
       goutte: ~
@@ -78,3 +84,4 @@ default:
       region_map:
         footer: "#footer"
         content: ".content"
+        taxonomy: "#taxonomy"
