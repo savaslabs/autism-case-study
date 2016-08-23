@@ -38,11 +38,3 @@ install:
 script:
   - docker-compose exec -T --user 82 php tests/bin/phpcs --standard=Drupal --extensions=php,module,inc,install,test,profile,theme www/sites/all/modules/custom www/sites/all/themes/custom --ignore=*.css,*.min.js,*addthis_widget.js,*features.*.inc
   - docker-compose exec -T --user 82 php tests/bin/behat -c tests/behat.yml
-
-after_failure:
-#  - docker exec -it duketoday_php bin/upload-textfiles "/var/log/httpd/ssl_request_log"
-#  - docker exec -it duketoday_php bin/upload-textfiles "/var/log/httpd/ssl_access_log"
-#  - docker exec -it duketoday_php bin/upload-textfiles "/var/log/httpd/ssl_error_log"
-#  - docker exec -it duketoday_php bin/drush ws --count=1000 --extended > $TRAVIS_BUILD_DIR/tests/logs/watchdog.log
-#  - docker exec -it duketoday_php bin/upload-textfiles "$TRAVIS_BUILD_DIR/tests/logs/*.log"
-#  - docker exec -it duketoday_php bin/upload-screenshots "$TRAVIS_BUILD_DIR/tests/logs/*.png"

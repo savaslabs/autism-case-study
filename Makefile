@@ -7,7 +7,7 @@ install:
 	- docker-compose exec --user 82 php /bin/sh -c "cp /var/www/html/default/settings.php /var/www/html/www/sites/default/settings.php"
 	- docker-compose exec --user 82 php /bin/sh -c "ls -l; cd tests; composer install"
 	- docker-compose exec -T --user 82 php tests/bin/phpcs --config-set installed_paths /var/www/html/tests/vendor/drupal/coder/coder_sniffer
-	- make provision
+	- docker-compose exec --user 82 php drush @dev wd-del all -y
 provision:
 	- docker-compose exec --user 82 php drush @dev updb -y
 	- docker-compose exec --user 82 php drush @dev fra -y
