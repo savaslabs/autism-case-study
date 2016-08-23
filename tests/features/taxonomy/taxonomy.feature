@@ -1,4 +1,4 @@
-Feature: Checks Roles and Permissions.
+Feature: Checks Taxonomy Vocabularies and Terms.
   As a developer
   I need to verify that my taxonomy vocabularies exist
   And that they have the proper terms
