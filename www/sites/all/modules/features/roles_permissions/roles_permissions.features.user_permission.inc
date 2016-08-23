@@ -88,6 +88,7 @@ function roles_permissions_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'site administrator' => 'site administrator',
+      'staff' => 'staff',
     ),
     'module' => 'node',
   );
@@ -258,6 +259,7 @@ function roles_permissions_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'site administrator' => 'site administrator',
+      'staff' => 'staff',
     ),
     'module' => 'comment',
   );
@@ -610,6 +612,7 @@ function roles_permissions_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'site administrator' => 'site administrator',
+      'staff' => 'staff',
     ),
     'module' => 'node',
   );
@@ -619,6 +622,7 @@ function roles_permissions_user_default_permissions() {
     'name' => 'delete any blog content',
     'roles' => array(
       'site administrator' => 'site administrator',
+      'staff' => 'staff',
     ),
     'module' => 'node',
   );
@@ -639,6 +643,7 @@ function roles_permissions_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'site administrator' => 'site administrator',
+      'staff' => 'staff',
     ),
     'module' => 'node',
   );
@@ -648,6 +653,7 @@ function roles_permissions_user_default_permissions() {
     'name' => 'delete any webform content',
     'roles' => array(
       'site administrator' => 'site administrator',
+      'staff' => 'staff',
     ),
     'module' => 'node',
   );
@@ -668,6 +674,7 @@ function roles_permissions_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'site administrator' => 'site administrator',
+      'staff' => 'staff',
     ),
     'module' => 'node',
   );
@@ -677,6 +684,7 @@ function roles_permissions_user_default_permissions() {
     'name' => 'delete own blog content',
     'roles' => array(
       'site administrator' => 'site administrator',
+      'staff' => 'staff',
     ),
     'module' => 'node',
   );
@@ -697,6 +705,7 @@ function roles_permissions_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'site administrator' => 'site administrator',
+      'staff' => 'staff',
     ),
     'module' => 'node',
   );
@@ -706,6 +715,7 @@ function roles_permissions_user_default_permissions() {
     'name' => 'delete own webform content',
     'roles' => array(
       'site administrator' => 'site administrator',
+      'staff' => 'staff',
     ),
     'module' => 'node',
   );
@@ -838,6 +848,7 @@ function roles_permissions_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'site administrator' => 'site administrator',
+      'staff' => 'staff',
     ),
     'module' => 'comment',
   );
@@ -1110,7 +1121,6 @@ function roles_permissions_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'site administrator' => 'site administrator',
-      'staff' => 'staff',
     ),
     'module' => 'node',
   );
