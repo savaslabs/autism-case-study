@@ -8,9 +8,9 @@ Feature: Checks Roles and Permissions.
     Given I am logged in as a user with the "administrator" role
     Then I can see that the "<role>" role exists
     Examples:
-    | role |
-    | staff |
-    | site administrator |
+      | role |
+      | staff |
+      | site administrator |
 
   # Scenario 2
   @javascript @api
