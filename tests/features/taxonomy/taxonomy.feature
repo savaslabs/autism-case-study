@@ -46,7 +46,7 @@ Feature: Checks Taxonomy Vocabularies and Terms.
     |path|heading|
     |visitor/type/parents|Parents|
     |visitor/type/teachers|Teachers|
-    |visitor/type/caregivers|Cargivers|
+    |visitor/type/caregivers|Caregivers|
     |visitor/type/people-with-as|People with AS|
     |resource/type/resources-for-parents|Resources for Parents|
     |resource/type/resources-for-teachers|Resources for Teachers|
