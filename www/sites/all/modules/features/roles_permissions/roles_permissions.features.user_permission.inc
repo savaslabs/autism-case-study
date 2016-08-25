@@ -750,11 +750,29 @@ function roles_permissions_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
+  // Exported permission: 'delete terms in resources'.
+  $permissions['delete terms in resources'] = array(
+    'name' => 'delete terms in resources',
+    'roles' => array(
+      'site administrator' => 'site administrator',
+    ),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'delete terms in tags'.
   $permissions['delete terms in tags'] = array(
     'name' => 'delete terms in tags',
     'roles' => array(
       'administrator' => 'administrator',
+      'site administrator' => 'site administrator',
+    ),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'delete terms in visitor_type'.
+  $permissions['delete terms in visitor_type'] = array(
+    'name' => 'delete terms in visitor_type',
+    'roles' => array(
       'site administrator' => 'site administrator',
     ),
     'module' => 'taxonomy',
@@ -904,11 +922,29 @@ function roles_permissions_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
+  // Exported permission: 'edit terms in resources'.
+  $permissions['edit terms in resources'] = array(
+    'name' => 'edit terms in resources',
+    'roles' => array(
+      'site administrator' => 'site administrator',
+    ),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'edit terms in tags'.
   $permissions['edit terms in tags'] = array(
     'name' => 'edit terms in tags',
     'roles' => array(
       'administrator' => 'administrator',
+      'site administrator' => 'site administrator',
+    ),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'edit terms in visitor_type'.
+  $permissions['edit terms in visitor_type'] = array(
+    'name' => 'edit terms in visitor_type',
+    'roles' => array(
       'site administrator' => 'site administrator',
     ),
     'module' => 'taxonomy',
