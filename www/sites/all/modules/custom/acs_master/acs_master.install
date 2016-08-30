@@ -226,24 +226,62 @@ function acs_master_update_7102() {
     // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
     throw new DrupalUpdateException($msg[2]);
   } // End if statement.
+}
 
-  // 4. Save the taxonomy terms associated with each vocabulary type.
-  // 4.1 Create array of Visitor Type Terms.
+/**
+ * Implements hook_update_N().
+ *
+ * Saves the Taxonomy Terms associated with Resource and Visitor Type Vocabs.
+ */
+function acs_master_update_7103() {
+  // 1. Create 2D array of 2 nested array of Terms with their matching Taxonomy.
+  // Vocabs as Keys.
   $arr_terms = array(
-    'Parents',
-    'Teachers',
-    'Caregivers',
-    'People with AS',
+    // 1.1 First nested array of Key 'Visitor Type'.
+    'visitor_type' => array(
+      'Parents',
+      'Teachers',
+      'Caregivers',
+      'People with AS',
+    ),
+    // 1.2 Second nested array of Key 'Resources'.
+    'resources' => array(
+      'Resources for Parents',
+      'Resources for Teachers',
+      'Resources for Caregivers',
+      'Resources for People with AS',
+    ),
   );
-  // 4.2 Loop through each term to get vid and save.
-  foreach ($arr_terms as $term_name) {
-    // 4.2.a Get term vid.
-    $vid = db_query("SELECT vid FROM $term_name");
-    // 4.2.b Save term using name and vid.
-    $term = array(
-      $term_name,
-      $vid,
-    );
-    taxonomy_term_save($term);
-  }
+
+  // 2. Loop through main array by using the Vocab Key as Index.
+  foreach ($arr_terms as $key_vocab => $arr_vocab) {
+    // 2.1 Then loop through each nested array of terms.
+    foreach ($arr_vocab as $name_term) {
+      // 2.1.a Get the Vocabulary Object using the Vocab Key "machine name".
+      $obj_vocab = taxonomy_vocabulary_machine_name_load($key_vocab);
+
+      // 2.1.b Check if term already exists under this vocabulary object.
+      $match_term = taxonomy_get_term_by_name($name_term, $obj_vocab->machine_name);
+
+      // 2.1.c If term doesn't exist, add.
+      if (empty($match_term)) {
+        // Create new term object.
+        $obj_term = new stdClass();
+        // Set Term object's vid to match Vocab object's vid.
+        $obj_term->vid = $obj_vocab->vid;
+        // Set Term object's name as current term.
+        $obj_term->name = $name_term;
+        // Save/add term.
+        taxonomy_term_save($obj_term);
+        // Print the  created term for verification.
+        echo '' . PHP_EOL;
+        echo 'Created Term ', $name_term, 'under Vocab ', $key_vocab . PHP_EOL;
+      }
+      // 2.1.c If term does exit, print verification.
+      else {
+        echo '' . PHP_EOL;
+        echo 'The Term ', $name_term, ' already exists' . PHP_EOL;
+      }
+    } // End for.
+  } // End for.
 }
