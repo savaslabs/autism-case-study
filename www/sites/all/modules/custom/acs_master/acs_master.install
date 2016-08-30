@@ -94,9 +94,9 @@ function _acs_master_enable_modules($arr_modules) {
  */
 function _acs_master_save_taxonomy_terms($arr_terms) {
   // 1. Loop through main array by using the Vocab Key as Index.
-  foreach ($arr_terms as $key_vocab => $arr_vocab) {
+  foreach ($arr_terms as $key_vocab => $arr_vocabterms) {
     // 1.1 Then loop through each nested array of terms.
-    foreach ($arr_vocab as $name_term) {
+    foreach ($arr_vocabterms as $name_term) {
       // 1.1.a Get the Vocabulary Object using the Vocab Key "machine name".
       $obj_vocab = taxonomy_vocabulary_machine_name_load($key_vocab);
 
