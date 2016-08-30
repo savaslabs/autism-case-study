@@ -39,6 +39,7 @@ function _acs_master_all_modules() {
     'webform',
     // Feature modules.
     'roles_permissions',
+    'taxonomy_vocabularies',
   );
   // 2. Return array as function output.
   return $arr_modules_ALL;
@@ -47,11 +48,16 @@ function _acs_master_all_modules() {
 /**
  * Enables each module listed within the passed array and returns confirmation.
  *
- * Function returns a 2 element array for error handling:
- * - If all modules were enabled correctly, then the 1st element will be TRUE
- * and the 2nd element will contain the success confirmation string.
- * - If an error occurs, then the 1st element will be FALSE and the 2nd element
- * will contain an error message detailing which module failed to enable.
+ * @param array $arr_modules
+ *    Array of module machine names to be enabled.
+ *
+ * @return array $result
+ *   2 element array with message for error handling:
+ *   - If all modules were enabled correctly, then the 1st element will be TRUE
+ *   and the 2nd element will contain the success confirmation string.
+ *   - If an error occurs, then the 1st element will be FALSE and the 2nd
+ *   element will contain an error message detailing which module failed to
+ *   enable.
  */
 function _acs_master_enable_modules($arr_modules) {
   // 1. Initialize variable to catch result of "enable_module".
@@ -81,6 +87,46 @@ function _acs_master_enable_modules($arr_modules) {
 }
 
 /**
+ * Creates/Saves Taxonomy Terms inside passed array.
+ *
+ * @param array $arr_terms
+ *    Array contains nested array of terms identified by matching Vocab Key.
+ */
+function _acs_master_save_taxonomy_terms($arr_terms) {
+  // 1. Loop through main array by using the Vocab Key as Index.
+  foreach ($arr_terms as $key_vocab => $arr_vocabterms) {
+    // 1.1 Then loop through each nested array of terms.
+    foreach ($arr_vocabterms as $name_term) {
+      // 1.1.a Get the Vocabulary Object using the Vocab Key "machine name".
+      $obj_vocab = taxonomy_vocabulary_machine_name_load($key_vocab);
+
+      // 1.1.b Check if term already exists under this vocabulary object.
+      $match_term = taxonomy_get_term_by_name($name_term, $obj_vocab->machine_name);
+
+      // 1.1.c If term doesn't exist, add.
+      if (empty($match_term)) {
+        // Create new term object.
+        $obj_term = new stdClass();
+        // Set Term object's vid to match Vocab object's vid.
+        $obj_term->vid = $obj_vocab->vid;
+        // Set Term object's name as current term.
+        $obj_term->name = $name_term;
+        // Save/add term.
+        taxonomy_term_save($obj_term);
+        // Print the  created term for verification.
+        echo '' . PHP_EOL;
+        echo 'Created Term ', $name_term, 'under Vocab ', $key_vocab . PHP_EOL;
+      }
+      // 1.1.d If term does exit, print verification.
+      else {
+        echo '' . PHP_EOL;
+        echo 'The Term ', $name_term, ' already exists' . PHP_EOL;
+      }
+    } // End for.
+  } // End for.
+}
+
+/**
  * Implements hook_install().
  *
  * This function runs the first time this module ACS Master is enabled.
@@ -97,12 +143,33 @@ function acs_master_install() {
   // 3. Print confirmation message or throw exception if process unsuccessful.
   if ($msg[1]) {
     // 3.1 If $msg[1] = TRUE, then print confirmation string in 2nd element.
-    return $msg[2];
+    echo $msg[2];
   }
   else {
     // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
     throw new Exception($msg[2]);
   } // End if statement.
+
+  // 4. Save the "Visitor Type" and "Resources" Taxonomy Terms.
+  // 4.1. Create 2D array of 2 nested array of Terms with matching Vocab keys.
+  $arr_terms = array(
+    // 4.1.a First nested array of Key 'Visitor Type'.
+    'visitor_type' => array(
+      'Parents',
+      'Teachers',
+      'Caregivers',
+      'People with AS',
+    ),
+    // 4.1.b Second nested array of Key 'Resources'.
+    'resources' => array(
+      'Resources for Parents',
+      'Resources for Teachers',
+      'Resources for Caregivers',
+      'Resources for People with AS',
+    ),
+  );
+  // 4.2 Save the taxonomy terms by passing to helper function.
+  _acs_master_save_taxonomy_terms($arr_terms);
 }
 
 /**
@@ -199,4 +266,59 @@ function acs_master_update_7101() {
     // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
     throw new DrupalUpdateException($msg[2]);
   } // End if statement.
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Enables the following Feature module: Taxonomy Vocabularies.
+ */
+function acs_master_update_7102() {
+  // 1. Create an array listing all module names for this update.
+  $arr_modules = array(
+    'taxonomy_vocabularies',
+  );
+
+  // 2. Enable each module in the array by passing to helper function.
+  // Store results in $msg for confirmation and error handling.
+  $msg = _acs_master_enable_modules($arr_modules);
+
+  // 3. Print confirmation message or throw exception if process unsuccessful.
+  if ($msg[1]) {
+    // 3.1 If $msg[1] = TRUE, then print confirmation string in 2nd element.
+    return $msg[2];
+  }
+  else {
+    // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
+    throw new DrupalUpdateException($msg[2]);
+  } // End if statement.
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Saves the Taxonomy Terms associated with Resource and Visitor Type Vocabs.
+ */
+function acs_master_update_7103() {
+  // 1. Create 2D array of 2 nested array of Terms with their matching Taxonomy.
+  // Vocabs as Keys.
+  $arr_terms = array(
+    // 1.1 First nested array of Key 'Visitor Type'.
+    'visitor_type' => array(
+      'Parents',
+      'Teachers',
+      'Caregivers',
+      'People with AS',
+    ),
+    // 1.2 Second nested array of Key 'Resources'.
+    'resources' => array(
+      'Resources for Parents',
+      'Resources for Teachers',
+      'Resources for Caregivers',
+      'Resources for People with AS',
+    ),
+  );
+
+  // 2. Save the taxonomy terms by passing to helper function.
+  _acs_master_save_taxonomy_terms($arr_terms);
 }
