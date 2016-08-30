@@ -67,6 +67,11 @@ default:
       contexts:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
+    content-types:
+      paths:
+        - %paths.base%/features/content-types
+      contexts:
+        - Drupal\DrupalExtension\Context\DrupalContext
   extensions:
     Behat\MinkExtension:
       goutte: ~
