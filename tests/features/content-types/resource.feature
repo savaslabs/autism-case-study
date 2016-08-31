@@ -22,4 +22,7 @@ Feature: Checks custom "Resource" content type.
       |Visitor Type|
       |Resource    |
 
-    
+  @api
+  Scenario:  Check "staff" can edit the "resource" content type
+    Given I am logged in as a user with the "staff" role
+    Then I should be able to edit a "Resource"
