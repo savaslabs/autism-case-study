@@ -23,6 +23,27 @@ Feature: Checks custom "Resource" content type.
       |Resource    |
 
   @api
-  Scenario:  Check "staff" can edit the "resource" content type
+  Scenario: A Staff user should be able to create Resource content
     Given I am logged in as a user with the "staff" role
     Then I should be able to edit a "Resource"
+##
+#  Scenario: An staff user should be able create Resource content
+#    Given I am logged in as a user with the "staff" role
+#    When I go to "node/add/resource"
+#    Then I should not see "Access denied"
+#
+#  Scenario: A Staff user should be able to edit Resource content
+#    Given "resource" nodes:
+#      | title      | body          | status  |
+#      | Test Resource  | test content  | 1       |
+#    When I go to "admin/content"
+#    And I click "edit" in the "Test Resource" row
+#    Then I should not see "Access denied"
+#
+#  Scenario: A Staff user should be able to delete Resource content
+#    Given "resource" nodes:
+#      | title      | body          | status  |
+#      | Test Resource  | test content  | 1       |
+#    When I go to "admin/content"
+#    And I click "delete" in the "Test Resource" row
+#    Then I should not see "Access denied"
