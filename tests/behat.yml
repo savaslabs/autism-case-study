@@ -51,6 +51,11 @@ default:
                 - 'edit any webform content'
                 - 'edit own webform content'
                 - 'administer menu'
+                - 'create resource content'
+                - 'delete any resource content'
+                - 'delete own resource content'
+                - 'edit any resource content'
+                - 'edit own resource content'
               authenticated user:
                 - 'access comments'
                 - 'post comments'
