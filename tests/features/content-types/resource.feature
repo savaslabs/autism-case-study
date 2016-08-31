@@ -7,13 +7,13 @@ Feature: Checks custom "Resource" content type.
   Scenario:  Check the "Resource" content type exists
     Given I am logged in as a user with the staff role
     When I visit "/admin/structure/types"
-    Then I should see "Resource" in the "Content types" region
+    Then I should see "Resource" in the "content" region
 
   @api
   Scenario Outline:  Check the "Resource" content type's fields exist
     Given I am logged in as a user with the staff role
     When I visit "/admin/structure/types/manage/resource/fields"
-    Then I should see "<fields>" in the "Resources" region
+    Then I should see "<fields>" in the "fields" region
     Examples:
       |fields|
       |Title|

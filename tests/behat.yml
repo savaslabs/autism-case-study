@@ -91,5 +91,4 @@ default:
         footer: "#footer"
         content: ".content"
         taxonomy: "#taxonomy"
-        Content types: "#overlay-content"
-        Resources: "#field-overview"
+        fields: "#field-overview"
