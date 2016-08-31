@@ -40,6 +40,7 @@ function _acs_master_all_modules() {
     // Feature modules.
     'roles_permissions',
     'taxonomy_vocabularies',
+    'link',
     'resource-content',
   );
   // 2. Return array as function output.
@@ -327,11 +328,12 @@ function acs_master_update_7103() {
 /**
  * Implements hook_update_N().
  *
- * Enables the following Feature module: Resource Content.
+ * Enables the following modules: Link, Resource Content.
  */
 function acs_master_update_7104() {
   // 1. Create an array listing all module names for this update.
   $arr_modules = array(
+    'link',
     'resource_content',
   );
 
