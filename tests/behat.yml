@@ -72,7 +72,7 @@ default:
       contexts:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
-    content-types:
+    content:
       paths:
         - %paths.base%/features/content-types
       contexts:
