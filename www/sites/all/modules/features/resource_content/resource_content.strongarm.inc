@@ -145,5 +145,19 @@ function resource_content_strongarm() {
   $strongarm->value = 'resource/[node:title]';
   $export['pathauto_node_resource_pattern'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'save_continue_resource';
+  $strongarm->value = 'Save and add fields';
+  $export['save_continue_resource'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'webform_node_resource';
+  $strongarm->value = 0;
+  $export['webform_node_resource'] = $strongarm;
+
   return $export;
 }

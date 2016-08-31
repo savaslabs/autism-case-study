@@ -32,4 +32,6 @@ features[variable][] = node_options_resource
 features[variable][] = node_preview_resource
 features[variable][] = node_submitted_resource
 features[variable][] = pathauto_node_resource_pattern
+features[variable][] = save_continue_resource
+features[variable][] = webform_node_resource
 project path = sites/all/modules/features
