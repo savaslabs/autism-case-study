@@ -5,13 +5,13 @@ Feature: Checks custom "Resource" content type.
 
   @api
   Scenario:  Check the "Resource" content type exists
-    Given I am logged in as a user with the staff role
+    Given I am logged in as a user with the "administrator" role
     When I visit "/admin/structure/types"
     Then I should see "Resource" in the "content" region
 
   @api
   Scenario Outline:  Check the "Resource" content type's fields exist
-    Given I am logged in as a user with the staff role
+    Given I am logged in as a user with the "administrator" role
     When I visit "/admin/structure/types/manage/resource/fields"
     Then I should see "<fields>" in the "fields" region
     Examples:
@@ -21,3 +21,5 @@ Feature: Checks custom "Resource" content type.
       |URL|
       |Visitor Type|
       |Resource    |
+
+    
