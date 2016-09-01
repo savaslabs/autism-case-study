@@ -51,6 +51,11 @@ default:
                 - 'edit any webform content'
                 - 'edit own webform content'
                 - 'administer menu'
+                - 'create resource content'
+                - 'delete any resource content'
+                - 'delete own resource content'
+                - 'edit any resource content'
+                - 'edit own resource content'
               authenticated user:
                 - 'access comments'
                 - 'post comments'
@@ -64,6 +69,12 @@ default:
     taxonomy:
       paths:
         - %paths.base%/features/taxonomy
+      contexts:
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+    content:
+      paths:
+        - %paths.base%/features/content-types
       contexts:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
@@ -85,3 +96,4 @@ default:
         footer: "#footer"
         content: ".content"
         taxonomy: "#taxonomy"
+        fields: "#field-overview"
