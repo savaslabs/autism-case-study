@@ -94,8 +94,8 @@ function event_content_field_default_field_instances() {
       'module' => 'date',
       'settings' => array(
         'increment' => 15,
-        'input_format' => 'M j Y - H:i:s',
-        'input_format_custom' => '',
+        'input_format' => 'custom',
+        'input_format_custom' => 'D, d-m-Y',
         'label_position' => 'above',
         'no_fieldset' => 0,
         'text_parts' => array(),
@@ -109,21 +109,15 @@ function event_content_field_default_field_instances() {
   // Exported field_instance: 'node-event-field_end_time'.
   $field_instances['node-event-field_end_time'] = array(
     'bundle' => 'event',
+    'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Enter the event\'s end time.',
+    'description' => 'Enter the event\'s end time (hh:mm AM/PM).',
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'show_remaining_days' => FALSE,
-        ),
-        'type' => 'date_default',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
         'weight' => 5,
       ),
       'teaser' => array(
@@ -138,26 +132,17 @@ function event_content_field_default_field_instances() {
     'label' => 'End Time',
     'required' => 1,
     'settings' => array(
-      'default_value' => 'now',
-      'default_value2' => 'same',
-      'default_value_code' => '',
-      'default_value_code2' => '',
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'date',
+      'module' => 'text',
       'settings' => array(
-        'increment' => 15,
-        'input_format' => 'M j Y - H:i:s',
-        'input_format_custom' => '',
-        'label_position' => 'above',
-        'no_fieldset' => 0,
-        'text_parts' => array(),
-        'year_range' => '-3:+3',
+        'size' => 60,
       ),
-      'type' => 'date_text',
-      'weight' => 5,
+      'type' => 'text_textfield',
+      'weight' => 11,
     ),
   );
 
@@ -301,8 +286,8 @@ function event_content_field_default_field_instances() {
       'module' => 'date',
       'settings' => array(
         'increment' => 15,
-        'input_format' => 'M j Y - H:i:s',
-        'input_format_custom' => '',
+        'input_format' => 'custom',
+        'input_format_custom' => 'D, m-d-Y',
         'label_position' => 'above',
         'no_fieldset' => 0,
         'text_parts' => array(),
@@ -316,21 +301,15 @@ function event_content_field_default_field_instances() {
   // Exported field_instance: 'node-event-field_start_time'.
   $field_instances['node-event-field_start_time'] = array(
     'bundle' => 'event',
+    'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Enter the event\'s start time.',
+    'description' => 'Enter the event\'s start time (hh:mm AM/PM).',
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'show_remaining_days' => FALSE,
-        ),
-        'type' => 'date_default',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
         'weight' => 3,
       ),
       'teaser' => array(
@@ -345,26 +324,17 @@ function event_content_field_default_field_instances() {
     'label' => 'Start Time',
     'required' => 1,
     'settings' => array(
-      'default_value' => 'now',
-      'default_value2' => 'same',
-      'default_value_code' => '',
-      'default_value_code2' => '',
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'date',
+      'module' => 'text',
       'settings' => array(
-        'increment' => 15,
-        'input_format' => 'M j Y - H:i:s',
-        'input_format_custom' => '',
-        'label_position' => 'above',
-        'no_fieldset' => 0,
-        'text_parts' => array(),
-        'year_range' => '-3:+3',
+        'size' => 60,
       ),
-      'type' => 'date_text',
-      'weight' => 3,
+      'type' => 'text_textfield',
+      'weight' => 10,
     ),
   );
 
@@ -412,9 +382,9 @@ function event_content_field_default_field_instances() {
   t('Enter a description of the event.');
   t('Enter a link to more information about the event.');
   t('Enter the event\'s end date.');
-  t('Enter the event\'s end time.');
+  t('Enter the event\'s end time (hh:mm AM/PM).');
   t('Enter the event\'s start date.');
-  t('Enter the event\'s start time.');
+  t('Enter the event\'s start time (hh:mm AM/PM).');
   t('Enter the location or venue of the event.');
   t('Location');
   t('More Information');

@@ -46,26 +46,18 @@ function event_content_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_end_time',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'date',
-    'settings' => array(
-      'cache_count' => 4,
-      'cache_enabled' => 0,
-      'granularity' => array(
-        'day' => 0,
-        'hour' => 'hour',
-        'minute' => 'minute',
-        'month' => 0,
-        'second' => 0,
-        'year' => 'year',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
       ),
-      'timezone_db' => 'UTC',
-      'todate' => '',
-      'tz_handling' => 'site',
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 10,
     ),
     'translatable' => 0,
-    'type' => 'datetime',
+    'type' => 'text',
   );
 
   // Exported field_base: 'field_location'.
@@ -125,26 +117,18 @@ function event_content_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_start_time',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'date',
-    'settings' => array(
-      'cache_count' => 4,
-      'cache_enabled' => 0,
-      'granularity' => array(
-        'day' => 0,
-        'hour' => 'hour',
-        'minute' => 'minute',
-        'month' => 0,
-        'second' => 0,
-        'year' => 'year',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
       ),
-      'timezone_db' => 'UTC',
-      'todate' => '',
-      'tz_handling' => 'site',
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 10,
     ),
     'translatable' => 0,
-    'type' => 'datetime',
+    'type' => 'text',
   );
 
   return $field_bases;
