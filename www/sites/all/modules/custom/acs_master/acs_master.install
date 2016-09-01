@@ -172,7 +172,7 @@ function _acs_master_save_taxonomy_terms($arr_terms) {
 //  _acs_master_save_taxonomy_terms($arr_terms);
 //
 //  // 5. Enable the modules for Resource content (not in master list!).
-//  $msg = _acs_master_enable_modules(array('link', 'resource-content'));
+//  $msg = _acs_master_enable_modules(array('link', 'resource_content'));
 //
 //  // 3. Print confirmation message or throw exception if process unsuccessful.
 //  if ($msg[1]) {
@@ -201,7 +201,7 @@ function _acs_master_save_taxonomy_terms($arr_terms) {
 //  module_disable($arr_reverse);
 //
 //  // 4. Disable the resource content modules (not in master list!).
-//  module_disable(array('resource-content', 'link'));
+//  module_disable(array('resource_content', 'link'));
 //}
 
 /**
