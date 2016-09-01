@@ -5,26 +5,27 @@ Feature: Checks custom "Event" content type.
 
 # Scenarios check the Event content type exists and has correct fields.
   # Scenario 1
-  @api
+  @api @10
   Scenario:  Check the "Event" content type exists
     Given I am logged in as a user with the "administrator" role
     When I visit "/admin/structure/types"
     Then I should see "Event" in the "content" region
 
   # Scenario 2
-  @api
+  @api @10
   Scenario Outline:  Check the "Event" content type's fields exist
     Given I am logged in as a user with the "administrator" role
     When I visit "/admin/structure/types/manage/event/fields"
     Then I should see "<fields>" in the "fields" region
     Examples:
-      |fields       |
-      |Title        |
-      |Description  |
-      |Location     |
-      |URL          |
-      |Visitor Type |
-      |Start Date   |
-      |Start Time   |
-      |End Date     |
-      |Emd Time     |
+      |fields           |
+      |Title            |
+      |Location         |
+      |Start Date       |
+      |Start Time       |
+      |End Date         |
+      |Emd Time         |
+      |Description      |
+      |More Information |
+      |Visitor Type     |
+
