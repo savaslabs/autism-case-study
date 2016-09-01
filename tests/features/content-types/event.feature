@@ -20,12 +20,12 @@ Feature: Checks custom "Event" content type.
     Examples:
       |fields           |
       |Title            |
+      |Description      |
       |Location         |
       |Start Date       |
       |Start Time       |
       |End Date         |
       |End Time         |
-      |Description      |
       |More Information |
       |Visitor Type     |
 
@@ -58,5 +58,30 @@ Feature: Checks custom "Event" content type.
     Then I should see "Are you sure"
     And I should not see "Access denied"
 
-
-
+# Scenarios check 5 Event content nodes all display correct fields.
+  # Scenario 6
+  @api @10
+  Scenario Outline: Check the taxonomy terms are hidden on Event content
+    Given "event" content:
+      | title        | status | field_description | field_location | field_start_date    | field_start_time | field_end_date      | field_end_time |
+      | Test Event1  | 1      | ABC               | London         | 2016-09-01 00:00:00 | 09:00 AM         | 2016-09-01 00:00:00 | 09:00 PM       |
+      | Test Event2  | 1      | DEF               | New York       | 2016-09-01 00:00:00 | 09:00 AM         | 2016-09-01 00:00:00 | 09:00 PM       |
+      | Test Event3  | 1      | GHI               | Rio            | 2016-09-01 00:00:00 | 09:00 AM         | 2016-09-01 00:00:00 | 09:00 PM       |
+      | Test Event4  | 1      | JKL               | Paris          | 2016-09-01 00:00:00 | 09:00 AM         | 2016-09-01 00:00:00 | 09:00 PM       |
+      | Test Event5  | 1      | MNO               | Helsinki       | 2016-09-01 00:00:00 | 09:00 AM         | 2016-09-01 00:00:00 | 09:00 PM       |
+    Given I am logged in as a user with the "staff" role
+    When I am at "<path>"
+    Then I should see "Description"
+    And I should see "Location"
+    And I should see "Start Date"
+    And I should see "Start Time"
+    And I should see "End Date"
+    And I should see "End Time"
+    And I should not see "Visitor Type"
+    Examples:
+      | path              |
+      | event/test-event1 |
+      | event/test-event2 |
+      | event/test-event3 |
+      | event/test-event4 |
+      | event/test-event5 |
