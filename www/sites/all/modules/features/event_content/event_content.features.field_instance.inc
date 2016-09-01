@@ -47,7 +47,7 @@ function event_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 6,
+      'weight' => 2,
     ),
   );
 
@@ -102,7 +102,7 @@ function event_content_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_text',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -142,7 +142,7 @@ function event_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 11,
+      'weight' => 6,
     ),
   );
 
@@ -294,7 +294,7 @@ function event_content_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_text',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -334,7 +334,7 @@ function event_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 10,
+      'weight' => 4,
     ),
   );
 
