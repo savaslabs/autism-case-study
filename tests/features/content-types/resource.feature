@@ -54,16 +54,27 @@ Feature: Checks custom "Resource" content type.
     Then I should see "Are you sure"
     And I should not see "Access denied"
 
-# Scenarios check Resource content displays correct items
+# Scenarios check 5 Resource content nodes all display correct fields.
   # Scenario 6
-  @api @now
-  Scenario: Check the taxonomy terms are hidden on Resource content
+  @api
+  Scenario Outline: Check the taxonomy terms are hidden on Resource content
     Given "resource" content:
-      | title          | field_description | field_source_url  | status |
-      | Test Resource  | ABC               | www.google.com    | 1      |
+      | title           | field_description | field_source_url  | status |
+      | Test Resource1  | ABC               | www.google.com    | 1      |
+      | Test Resource2  | DEF               | www.google.com    | 1      |
+      | Test Resource3  | GHI               | www.google.com    | 1      |
+      | Test Resource4  | JKL               | www.google.com    | 1      |
+      | Test Resource5  | MNO               | www.google.com    | 1      |
     Given I am logged in as a user with the "staff" role
-    When I am at "resource/test-resource"
+    When I am at "<path>"
     Then I should see "Description"
     And I should see "Source URL"
     And I should not see "Visitor Type"
     And I should not see "Resource Category"
+    Examples:
+      | path                    |
+      | resource/test-resource1 |
+      | resource/test-resource2 |
+      | resource/test-resource3 |
+      | resource/test-resource4 |
+      | resource/test-resource5 |
