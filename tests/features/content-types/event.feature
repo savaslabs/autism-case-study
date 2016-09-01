@@ -24,7 +24,7 @@ Feature: Checks custom "Event" content type.
       |Start Date       |
       |Start Time       |
       |End Date         |
-      |Emd Time         |
+      |End Time         |
       |Description      |
       |More Information |
       |Visitor Type     |
