@@ -3,12 +3,14 @@ Feature: Checks custom "Resource" content type.
   I need to verify that my custom "Resource" content type exists
   And that the proper fields are displayed according various use roles
 
+  # Scenario 1
   @api
   Scenario:  Check the "Resource" content type exists
     Given I am logged in as a user with the "administrator" role
     When I visit "/admin/structure/types"
     Then I should see "Resource" in the "content" region
 
+  # Scenario 2
   @api
   Scenario Outline:  Check the "Resource" content type's fields exist
     Given I am logged in as a user with the "administrator" role
@@ -22,28 +24,30 @@ Feature: Checks custom "Resource" content type.
       |Visitor Type|
       |Resource    |
 
+  # Scenario 3
   @api
-  Scenario: A Staff user should be able to create Resource content
+  Scenario: Check Staff user can create Resource content
+    Given I am logged in as a user with the "staff" role
+    When I am at "node/add"
+    And I click "Resource"
+    Then I should be on "node/add/resource"
+    And I should see text matching "Create Resource"
+    And I should not see "Access denied"
+
+  # Scenario 4
+  @api
+  Scenario: Check Staff user can edit Resource content
     Given I am logged in as a user with the "staff" role
     Then I should be able to edit a "Resource"
-##
-#  Scenario: An staff user should be able create Resource content
-#    Given I am logged in as a user with the "staff" role
-#    When I go to "node/add/resource"
-#    Then I should not see "Access denied"
-#
-#  Scenario: A Staff user should be able to edit Resource content
-#    Given "resource" nodes:
-#      | title      | body          | status  |
-#      | Test Resource  | test content  | 1       |
-#    When I go to "admin/content"
-#    And I click "edit" in the "Test Resource" row
-#    Then I should not see "Access denied"
-#
-#  Scenario: A Staff user should be able to delete Resource content
-#    Given "resource" nodes:
-#      | title      | body          | status  |
-#      | Test Resource  | test content  | 1       |
-#    When I go to "admin/content"
-#    And I click "delete" in the "Test Resource" row
-#    Then I should not see "Access denied"
+
+  # Scenario 5
+  @api
+  Scenario: Check Staff user can delete Resource content
+    Given "resource" content:
+      | title         | field_description | field_source_url  | status|
+      | Test Resource | ABC               | www.google.com    | 1     |
+    Given I am logged in as a user with the "staff" role
+    When I am at "admin/content"
+    And I click "delete" in the "Test Resource" row
+    Then I should see "Are you sure"
+    And I should not see "Access denied"
