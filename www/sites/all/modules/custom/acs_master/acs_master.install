@@ -5,45 +5,45 @@
  * Runs the set up procedures as required by the ACS Master module.
  */
 
-/**
- * Returns an array containing all modules enabled in ACS Master.
- *
- * Modules are listed in proper order (based on dependencies) for enabling.
- * Array will be updated each time a new module is added to project.
- */
-function _acs_master_all_modules() {
-  // 1. Create array listing all modules.
-  $arr_modules_ALL = array(
-    // Core modules.
-    'aggregator',
-    'blog',
-    'contact',
-    'dblog',
-    'field_ui',
-    'file',
-    'forum',
-    'image',
-    'menu',
-    'search',
-    // Contrib modules.
-    'backup_migrate',
-    'devel',
-    'features',
-    'ctools',
-    'date',
-    'views',
-    'strongarm',
-    // 'features_extra', (8/11: removed for now).
-    'token',
-    'pathauto',
-    'webform',
-    // Feature modules.
-    'roles_permissions',
-    'taxonomy_vocabularies',
-  );
-  // 2. Return array as function output.
-  return $arr_modules_ALL;
-}
+///**
+// * Returns an array containing all modules enabled in ACS Master.
+// *
+// * Modules are listed in proper order (based on dependencies) for enabling.
+// * Array will be updated each time a new module is added to project.
+// */
+//function _acs_master_all_modules() {
+//  // 1. Create array listing all modules.
+//  $arr_modules_ALL = array(
+//    // Core modules.
+//    'aggregator',
+//    'blog',
+//    'contact',
+//    'dblog',
+//    'field_ui',
+//    'file',
+//    'forum',
+//    'image',
+//    'menu',
+//    'search',
+//    // Contrib modules.
+//    'backup_migrate',
+//    'devel',
+//    'features',
+//    'ctools',
+//    'date',
+//    'views',
+//    'strongarm',
+//    // 'features_extra', (8/11: removed for now).
+//    'token',
+//    'pathauto',
+//    'webform',
+//    // Feature modules.
+//    'roles_permissions',
+//    'taxonomy_vocabularies',
+//  );
+//  // 2. Return array as function output.
+//  return $arr_modules_ALL;
+//}
 
 /**
  * Enables each module listed within the passed array and returns confirmation.
@@ -126,83 +126,83 @@ function _acs_master_save_taxonomy_terms($arr_terms) {
   } // End for.
 }
 
-/**
- * Implements hook_install().
- *
- * This function runs the first time this module ACS Master is enabled.
- * It enables all the required modules and returns a confirmation message.
- */
-function acs_master_install() {
-  // 1. Call function to return array listing all modules.
-  $arr_modules_ALL = _acs_master_all_modules();
-
-  // 2. Enable each module by passing array to the helper function.
-  // Store results in $msg for confirmation and error handling.
-  $msg = _acs_master_enable_modules($arr_modules_ALL);
-
-  // 3. Print confirmation message or throw exception if process unsuccessful.
-  if ($msg[1]) {
-    // 3.1 If $msg[1] = TRUE, then print confirmation string in 2nd element.
-    echo $msg[2];
-  }
-  else {
-    // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
-    throw new Exception($msg[2]);
-  } // End if statement.
-
-  // 4. Save the "Visitor Type" and "Resources" Taxonomy Terms.
-  // 4.1. Create 2D array of 2 nested array of Terms with matching Vocab keys.
-  $arr_terms = array(
-    // 4.1.a First nested array of Key 'Visitor Type'.
-    'visitor_type' => array(
-      'Parents',
-      'Teachers',
-      'Caregivers',
-      'People with AS',
-    ),
-    // 4.1.b Second nested array of Key 'Resources'.
-    'resources' => array(
-      'Resources for Parents',
-      'Resources for Teachers',
-      'Resources for Caregivers',
-      'Resources for People with AS',
-    ),
-  );
-  // 4.2 Save the taxonomy terms by passing to helper function.
-  _acs_master_save_taxonomy_terms($arr_terms);
-
-  // 5. Enable the modules for Resource content (not in master list!).
-  $msg = _acs_master_enable_modules(array('link', 'resource-content'));
-
-  // 3. Print confirmation message or throw exception if process unsuccessful.
-  if ($msg[1]) {
-    // 3.1 If $msg[1] = TRUE, then print confirmation string in 2nd element.
-    return $msg[2];
-  }
-  else {
-    // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
-    throw new DrupalUpdateException($msg[2]);
-  } // End if statement.
-}
-
-/**
- * Implements hook_uninstall().
- *
- * This function disables all the modules enabled in acs_master_install.
- */
-function acs_master_uninstall() {
-  // 1. Call function to return array listing all modules.
-  $arr_modules_ALL = _acs_master_all_modules();
-
-  // 2. Reverse the order of array for disabling.
-  $arr_reverse = array_reverse($arr_modules_ALL);
-
-  // 3. Disable each module in the reversed array.
-  module_disable($arr_reverse);
-
-  // 4. Disable the resource content modules (not in master list!).
-  module_disable(array('resource-content', 'link'));
-}
+///**
+// * Implements hook_install().
+// *
+// * This function runs the first time this module ACS Master is enabled.
+// * It enables all the required modules and returns a confirmation message.
+// */
+//function acs_master_install() {
+//  // 1. Call function to return array listing all modules.
+//  $arr_modules_ALL = _acs_master_all_modules();
+//
+//  // 2. Enable each module by passing array to the helper function.
+//  // Store results in $msg for confirmation and error handling.
+//  $msg = _acs_master_enable_modules($arr_modules_ALL);
+//
+//  // 3. Print confirmation message or throw exception if process unsuccessful.
+//  if ($msg[1]) {
+//    // 3.1 If $msg[1] = TRUE, then print confirmation string in 2nd element.
+//    echo $msg[2];
+//  }
+//  else {
+//    // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
+//    throw new Exception($msg[2]);
+//  } // End if statement.
+//
+//  // 4. Save the "Visitor Type" and "Resources" Taxonomy Terms.
+//  // 4.1. Create 2D array of 2 nested array of Terms with matching Vocab keys.
+//  $arr_terms = array(
+//    // 4.1.a First nested array of Key 'Visitor Type'.
+//    'visitor_type' => array(
+//      'Parents',
+//      'Teachers',
+//      'Caregivers',
+//      'People with AS',
+//    ),
+//    // 4.1.b Second nested array of Key 'Resources'.
+//    'resources' => array(
+//      'Resources for Parents',
+//      'Resources for Teachers',
+//      'Resources for Caregivers',
+//      'Resources for People with AS',
+//    ),
+//  );
+//  // 4.2 Save the taxonomy terms by passing to helper function.
+//  _acs_master_save_taxonomy_terms($arr_terms);
+//
+//  // 5. Enable the modules for Resource content (not in master list!).
+//  $msg = _acs_master_enable_modules(array('link', 'resource-content'));
+//
+//  // 3. Print confirmation message or throw exception if process unsuccessful.
+//  if ($msg[1]) {
+//    // 3.1 If $msg[1] = TRUE, then print confirmation string in 2nd element.
+//    return $msg[2];
+//  }
+//  else {
+//    // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
+//    throw new DrupalUpdateException($msg[2]);
+//  } // End if statement.
+//}
+//
+///**
+// * Implements hook_uninstall().
+// *
+// * This function disables all the modules enabled in acs_master_install.
+// */
+//function acs_master_uninstall() {
+//  // 1. Call function to return array listing all modules.
+//  $arr_modules_ALL = _acs_master_all_modules();
+//
+//  // 2. Reverse the order of array for disabling.
+//  $arr_reverse = array_reverse($arr_modules_ALL);
+//
+//  // 3. Disable each module in the reversed array.
+//  module_disable($arr_reverse);
+//
+//  // 4. Disable the resource content modules (not in master list!).
+//  module_disable(array('resource-content', 'link'));
+//}
 
 /**
  * Implements hook_update_N().
