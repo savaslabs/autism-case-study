@@ -41,7 +41,7 @@ function _acs_master_all_modules() {
     'roles_permissions',
     'taxonomy_vocabularies',
     'link',
-    'resource-content',
+    'resource_content',
   );
   // 2. Return array as function output.
   return $arr_modules_ALL;
