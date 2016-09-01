@@ -3,6 +3,7 @@ Feature: Checks custom "Resource" content type.
   I need to verify that my custom "Resource" content type exists
   And that the proper fields are displayed according various use roles
 
+# Scenarios check the Resource content type exists and has correct fields.
   # Scenario 1
   @api
   Scenario:  Check the "Resource" content type exists
@@ -24,6 +25,7 @@ Feature: Checks custom "Resource" content type.
       |Visitor Type|
       |Resource    |
 
+# Scenarios check Staff can create/edit/delete Resource content.
   # Scenario 3
   @api
   Scenario: Check Staff user can create Resource content
@@ -51,3 +53,17 @@ Feature: Checks custom "Resource" content type.
     And I click "delete" in the "Test Resource" row
     Then I should see "Are you sure"
     And I should not see "Access denied"
+
+# Scenarios check Resource content displays correct items
+  # Scenario 6
+  @api @now
+  Scenario: Check the taxonomy terms are hidden on Resource content
+    Given "resource" content:
+      | title          | field_description | field_source_url  | status |
+      | Test Resource  | ABC               | www.google.com    | 1      |
+    Given I am logged in as a user with the "staff" role
+    When I am at "resource/test-resource"
+    Then I should see "Description"
+    And I should see "Source URL"
+    And I should not see "Visitor Type"
+    And I should not see "Resource Category"
