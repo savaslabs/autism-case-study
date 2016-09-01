@@ -29,3 +29,34 @@ Feature: Checks custom "Event" content type.
       |More Information |
       |Visitor Type     |
 
+# Scenarios check Staff can create/edit/delete Event content.
+  # Scenario 3
+  @api @10
+  Scenario: Check Staff user can create Event content
+    Given I am logged in as a user with the "staff" role
+    When I am at "node/add"
+    And I click "Event"
+    Then I should be on "node/add/event"
+    And I should see text matching "Create Event"
+    And I should not see "Access denied"
+
+  # Scenario 4
+  @api @10
+  Scenario: Check Staff user can edit Event content
+    Given I am logged in as a user with the "staff" role
+    Then I should be able to edit a "Event"
+
+  # Scenario 5
+  @api @10
+  Scenario: Check Staff user can delete Event content
+    Given "Event" content:
+      | title         | field_description | field_source_url  | status|
+      | Test Event    | ABC               | www.google.com    | 1     |
+    Given I am logged in as a user with the "staff" role
+    When I am at "admin/content"
+    And I click "delete" in the "Test Event" row
+    Then I should see "Are you sure"
+    And I should not see "Access denied"
+
+
+
