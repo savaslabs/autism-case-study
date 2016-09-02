@@ -56,6 +56,11 @@ default:
                 - 'delete own resource content'
                 - 'edit any resource content'
                 - 'edit own resource content'
+                - 'create event content'
+                - 'delete any event content'
+                - 'delete own event content'
+                - 'edit any event content'
+                - 'edit own event content'
               authenticated user:
                 - 'access comments'
                 - 'post comments'

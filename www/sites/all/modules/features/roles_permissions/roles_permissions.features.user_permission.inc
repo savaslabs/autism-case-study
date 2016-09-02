@@ -546,6 +546,16 @@ function roles_permissions_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'create event content'.
+  $permissions['create event content'] = array(
+    'name' => 'create event content',
+    'roles' => array(
+      'site administrator' => 'site administrator',
+      'staff' => 'staff',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'create forum content'.
   $permissions['create forum content'] = array(
     'name' => 'create forum content',
@@ -638,6 +648,16 @@ function roles_permissions_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'delete any event content'.
+  $permissions['delete any event content'] = array(
+    'name' => 'delete any event content',
+    'roles' => array(
+      'site administrator' => 'site administrator',
+      'staff' => 'staff',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'delete any forum content'.
   $permissions['delete any forum content'] = array(
     'name' => 'delete any forum content',
@@ -703,6 +723,16 @@ function roles_permissions_user_default_permissions() {
   // Exported permission: 'delete own blog content'.
   $permissions['delete own blog content'] = array(
     'name' => 'delete own blog content',
+    'roles' => array(
+      'site administrator' => 'site administrator',
+      'staff' => 'staff',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'delete own event content'.
+  $permissions['delete own event content'] = array(
+    'name' => 'delete own event content',
     'roles' => array(
       'site administrator' => 'site administrator',
       'staff' => 'staff',
@@ -839,6 +869,16 @@ function roles_permissions_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit any event content'.
+  $permissions['edit any event content'] = array(
+    'name' => 'edit any event content',
+    'roles' => array(
+      'site administrator' => 'site administrator',
+      'staff' => 'staff',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'edit any forum content'.
   $permissions['edit any forum content'] = array(
     'name' => 'edit any forum content',
@@ -910,6 +950,16 @@ function roles_permissions_user_default_permissions() {
       'staff' => 'staff',
     ),
     'module' => 'comment',
+  );
+
+  // Exported permission: 'edit own event content'.
+  $permissions['edit own event content'] = array(
+    'name' => 'edit own event content',
+    'roles' => array(
+      'site administrator' => 'site administrator',
+      'staff' => 'staff',
+    ),
+    'module' => 'node',
   );
 
   // Exported permission: 'edit own forum content'.
