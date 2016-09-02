@@ -21,17 +21,14 @@ cache:
   - $TRAVIS_BUILD_DIR/.composer/cache
 
 before_install:
-#  - pip install --user awscli ## may add this later...
   - export PATH=$PATH:$HOME/.local/bin
   - docker version
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   - docker-compose version
-  #- cp $TRAVIS_BUILD_DIR/default/database.sql $TRAVIS_BUILD_DIR/docker-runtime/mariadb-init/database.sql
 
 install:
-#  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - make install
   - make provision
 
