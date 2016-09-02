@@ -22,7 +22,7 @@ Feature: Checks "Page" content type.
   # Scenario 3
   @api @12
   Scenario: Check Staff user can delete Page content
-    Given "Page" content:
+    Given "Basic page" content:
       | title         | status |
       | Test Page  | 1      |
     Given I am logged in as a user with the "staff" role
@@ -35,7 +35,7 @@ Feature: Checks "Page" content type.
   # Scenario 4
   @api @12
   Scenario Outline: Check the taxonomy terms are hidden on Page content
-    Given "Page" content:
+    Given "Basic page" content:
       | title      | status | body | field_visitor_type|
       | Test Page1 | 1      | ABC  | Parents           |
       | Test Page2 | 1      | DEF  | Parents           |
