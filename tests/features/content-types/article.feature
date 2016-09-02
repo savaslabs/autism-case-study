@@ -36,16 +36,15 @@ Feature: Checks "Article" content type.
   @api @11
   Scenario Outline: Check the taxonomy terms are hidden on Article content
     Given "Article" content:
-      | title         | status | field_description |
-      | Test Article1 | 1      | ABC               |
-      | Test Article2 | 1      | DEF               |
-      | Test Article3 | 1      | GHI               |
-      | Test Article4 | 1      | JKL               |
-      | Test Article5 | 1      | MNO               |
+      | title         | status | body | field_visitor_type|
+      | Test Article1 | 1      | ABC  | Parents           |
+      | Test Article2 | 1      | DEF  | Parents           |
+      | Test Article3 | 1      | GHI  | Parents           |
+      | Test Article4 | 1      | JKL  | Parents           |
+      | Test Article5 | 1      | MNO  | Parents           |
     Given I am logged in as a user with the "staff" role
     When I am at "<path>"
-    Then I should see "Description"
-    And I should not see "Visitor Type"
+    Then I should not see "Visitor Type"
     Examples:
       | path              |
       | article/test-article1 |
