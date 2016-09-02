@@ -540,6 +540,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['create blog content'] = array(
     'name' => 'create blog content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -550,6 +551,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['create event content'] = array(
     'name' => 'create event content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -560,6 +562,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['create forum content'] = array(
     'name' => 'create forum content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -581,6 +584,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['create resource content'] = array(
     'name' => 'create resource content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -601,6 +605,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['create webform content'] = array(
     'name' => 'create webform content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -642,6 +647,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['delete any blog content'] = array(
     'name' => 'delete any blog content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -652,6 +658,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['delete any event content'] = array(
     'name' => 'delete any event content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -662,6 +669,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['delete any forum content'] = array(
     'name' => 'delete any forum content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -683,6 +691,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['delete any resource content'] = array(
     'name' => 'delete any resource content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -693,6 +702,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['delete any webform content'] = array(
     'name' => 'delete any webform content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -724,6 +734,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['delete own blog content'] = array(
     'name' => 'delete own blog content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -734,6 +745,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['delete own event content'] = array(
     'name' => 'delete own event content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -744,6 +756,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['delete own forum content'] = array(
     'name' => 'delete own forum content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -765,6 +778,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['delete own resource content'] = array(
     'name' => 'delete own resource content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -775,6 +789,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['delete own webform content'] = array(
     'name' => 'delete own webform content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -805,6 +820,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['delete terms in forums'] = array(
     'name' => 'delete terms in forums',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
     ),
     'module' => 'taxonomy',
@@ -814,6 +830,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['delete terms in resources'] = array(
     'name' => 'delete terms in resources',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
     ),
     'module' => 'taxonomy',
@@ -833,6 +850,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['delete terms in visitor_type'] = array(
     'name' => 'delete terms in visitor_type',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
     ),
     'module' => 'taxonomy',
@@ -863,6 +881,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['edit any blog content'] = array(
     'name' => 'edit any blog content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -873,6 +892,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['edit any event content'] = array(
     'name' => 'edit any event content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -883,6 +903,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['edit any forum content'] = array(
     'name' => 'edit any forum content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -904,6 +925,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['edit any resource content'] = array(
     'name' => 'edit any resource content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -914,6 +936,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['edit any webform content'] = array(
     'name' => 'edit any webform content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -935,6 +958,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['edit own blog content'] = array(
     'name' => 'edit own blog content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -956,6 +980,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['edit own event content'] = array(
     'name' => 'edit own event content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -966,6 +991,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['edit own forum content'] = array(
     'name' => 'edit own forum content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -987,6 +1013,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['edit own resource content'] = array(
     'name' => 'edit own resource content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -997,6 +1024,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['edit own webform content'] = array(
     'name' => 'edit own webform content',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -1017,6 +1045,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['edit terms in forums'] = array(
     'name' => 'edit terms in forums',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
     ),
     'module' => 'taxonomy',
@@ -1026,6 +1055,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['edit terms in resources'] = array(
     'name' => 'edit terms in resources',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
     ),
     'module' => 'taxonomy',
@@ -1045,6 +1075,7 @@ function roles_permissions_user_default_permissions() {
   $permissions['edit terms in visitor_type'] = array(
     'name' => 'edit terms in visitor_type',
     'roles' => array(
+      'administrator' => 'administrator',
       'site administrator' => 'site administrator',
     ),
     'module' => 'taxonomy',
