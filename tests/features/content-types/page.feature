@@ -8,16 +8,16 @@ Feature: Checks "Page" content type.
   Scenario: Check Staff user can create Page content
     Given I am logged in as a user with the "staff" role
     When I am at "node/add"
-    And I click "Page"
+    And I click "Basic page"
     Then I should be on "node/add/page"
-    And I should see text matching "Create Page"
+    And I should see text matching "Create Basic page"
     And I should not see "Access denied"
 
   # Scenario 2
   @api @12
   Scenario: Check Staff user can edit Page content
     Given I am logged in as a user with the "staff" role
-    Then I should be able to edit a "Page"
+    Then I should be able to edit a "Basic page"
 
   # Scenario 3
   @api @12
