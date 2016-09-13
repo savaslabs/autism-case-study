@@ -63,7 +63,9 @@ function views_upcomingevents_views_default_views() {
   $handler->display->display_options['filters']['field_end_date_value']['id'] = 'field_end_date_value';
   $handler->display->display_options['filters']['field_end_date_value']['table'] = 'field_data_field_end_date';
   $handler->display->display_options['filters']['field_end_date_value']['field'] = 'field_end_date_value';
-  $handler->display->display_options['filters']['field_end_date_value']['operator'] = 'not empty';
+  $handler->display->display_options['filters']['field_end_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_end_date_value']['default_date'] = 'Now';
+  $handler->display->display_options['filters']['field_end_date_value']['year_range'] = '-0:+10';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
