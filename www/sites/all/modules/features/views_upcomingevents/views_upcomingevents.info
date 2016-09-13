@@ -1,4 +1,4 @@
-name = views_upcomingevents
+name = Views: Upcoming Events
 description = Feature captures configurations for the "Upcoming Events" view page
 core = 7.x
 package = Features
