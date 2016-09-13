@@ -16,7 +16,6 @@ In your `/etc/hosts` file add:
 `
 
 * Run `make install`
-* If the drush alias file does not copy properly (all of the drush steps will throw an error), run `make initialize`.
 
 ## Ongoing
 
