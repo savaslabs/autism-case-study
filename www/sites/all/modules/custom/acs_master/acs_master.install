@@ -50,6 +50,7 @@ function _acs_master_all_modules() {
     'views_ui',
     'views_upcomingevents',
     'date_views',
+    'views_resources',
   );
   // 2. Return array as function output.
   return $arr_modules_ALL;
@@ -551,6 +552,32 @@ function acs_master_update_7112() {
   // 1. Create an array listing all module names for this update.
   $arr_modules = array(
     'date_views',
+  );
+
+  // 2. Enable each module in the array by passing to helper function.
+  // Store results in $msg for confirmation and error handling.
+  $msg = _acs_master_enable_modules($arr_modules);
+
+  // 3. Print confirmation message or throw exception if process unsuccessful.
+  if ($msg[1]) {
+    // 3.1 If $msg[1] = TRUE, then print confirmation string in 2nd element.
+    return $msg[2];
+  }
+  else {
+    // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
+    throw new DrupalUpdateException($msg[2]);
+  } // End if statement.
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Enables the following modules: views_resources.
+ */
+function acs_master_update_7113() {
+  // 1. Create an array listing all module names for this update.
+  $arr_modules = array(
+    'views_resources',
   );
 
   // 2. Enable each module in the array by passing to helper function.
