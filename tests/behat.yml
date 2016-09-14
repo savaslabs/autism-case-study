@@ -83,6 +83,12 @@ default:
       contexts:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
+    views:
+      paths:
+        - %paths.base%/features/views
+      contexts:
+              - Drupal\DrupalExtension\Context\DrupalContext
+              - Drupal\DrupalExtension\Context\MinkContext
   extensions:
     Behat\MinkExtension:
       goutte: ~
