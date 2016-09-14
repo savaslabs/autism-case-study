@@ -55,6 +55,8 @@ function views_resources_views_default_views() {
   $handler->display->display_options['sorts']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['sorts']['name']['field'] = 'name';
   $handler->display->display_options['sorts']['name']['relationship'] = 'term_node_tid';
+  $handler->display->display_options['sorts']['name']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['name']['expose']['label'] = 'Categories';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
