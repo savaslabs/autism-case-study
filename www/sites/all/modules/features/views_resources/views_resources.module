@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Views: Resources feature.
+ */
+
+include_once 'views_resources.features.inc';
