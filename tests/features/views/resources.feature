@@ -20,7 +20,7 @@ Feature: Checks "Resources" View
       |administrator      |
 
   # Scenario 2
-  @api @39 @now
+  @api @39
   Scenario Outline: Check content is being sorted by category and title
     Given "resource" content:
       |title            |status |field_resource_category  |
@@ -47,3 +47,24 @@ Feature: Checks "Resources" View
       |.views-row-6  |Test Resource3.2 |
       |.views-row-7  |Test Resource4.1 |
       |.views-row-8  |Test Resource4.2 |
+
+  # Scenario 3
+  @api @39 @now
+  Scenario Outline: Check the category filter works
+    Given "resource" content:
+      |title          |status |field_resource_category      |
+      |Test Resource1 |1      |Resources for Caregivers     |
+      |Test Resource2 |1      |Resources for Parents        |
+      |Test Resource3 |1      |Resources for People with AS |
+      |Test Resource4 |1      |Resources for Teachers       |
+
+    Given I am logged in as a user with the "anonymous user" role
+    When I visit "/resources"
+    And I select "<category>" from "Category"
+    Then I should see "<title>"
+    Examples:
+      |category                     |title          |
+      |Resources for Caregivers     |Test Resource1 |
+      |Resources for Parents        |Test Resource2 |
+      |Resources for People with AS |Test Resource3 |
+      |Resources for Teachers       |Test Resource4 |
