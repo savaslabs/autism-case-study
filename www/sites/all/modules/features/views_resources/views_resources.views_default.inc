@@ -36,7 +36,8 @@ function views_resources_views_default_views() {
   $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
   $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
   $handler->display->display_options['relationships']['term_node_tid']['field'] = 'term_node_tid';
-  $handler->display->display_options['relationships']['term_node_tid']['label'] = 'Resource Categories';
+  $handler->display->display_options['relationships']['term_node_tid']['label'] = 'Resource Terms';
+  $handler->display->display_options['relationships']['term_node_tid']['required'] = TRUE;
   $handler->display->display_options['relationships']['term_node_tid']['vocabularies'] = array(
     'resources' => 'resources',
     'forums' => 0,
@@ -55,8 +56,11 @@ function views_resources_views_default_views() {
   $handler->display->display_options['sorts']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['sorts']['name']['field'] = 'name';
   $handler->display->display_options['sorts']['name']['relationship'] = 'term_node_tid';
-  $handler->display->display_options['sorts']['name']['exposed'] = TRUE;
   $handler->display->display_options['sorts']['name']['expose']['label'] = 'Categories';
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -71,6 +75,26 @@ function views_resources_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'resource' => 'resource',
   );
+  /* Filter criterion: Content: Resource Category (field_resource_category) */
+  $handler->display->display_options['filters']['field_resource_category_tid']['id'] = 'field_resource_category_tid';
+  $handler->display->display_options['filters']['field_resource_category_tid']['table'] = 'field_data_field_resource_category';
+  $handler->display->display_options['filters']['field_resource_category_tid']['field'] = 'field_resource_category_tid';
+  $handler->display->display_options['filters']['field_resource_category_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_resource_category_tid']['expose']['operator_id'] = 'field_resource_category_tid_op';
+  $handler->display->display_options['filters']['field_resource_category_tid']['expose']['label'] = 'Category';
+  $handler->display->display_options['filters']['field_resource_category_tid']['expose']['description'] = 'Narrow list by Resource Category';
+  $handler->display->display_options['filters']['field_resource_category_tid']['expose']['operator'] = 'field_resource_category_tid_op';
+  $handler->display->display_options['filters']['field_resource_category_tid']['expose']['identifier'] = 'field_resource_category_tid';
+  $handler->display->display_options['filters']['field_resource_category_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+  );
+  $handler->display->display_options['filters']['field_resource_category_tid']['reduce_duplicates'] = TRUE;
+  $handler->display->display_options['filters']['field_resource_category_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_resource_category_tid']['vocabulary'] = 'resources';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
