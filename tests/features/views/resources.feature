@@ -36,7 +36,6 @@ Feature: Checks "Resources" View
     Given I am logged in as a user with the "anonymous user" role
     When I visit "/resources"
     Then the "<view-row>" element should contain "<title>"
-    #Then the ".views-row-1" element should contain "Test Resource1.1"
     Examples:
       |view-row      |title            |
       |.views-row-1  |Test Resource1.1 |
@@ -49,7 +48,7 @@ Feature: Checks "Resources" View
       |.views-row-8  |Test Resource4.2 |
 
   # Scenario 3
-  @api @39 @now
+  @api @39
   Scenario Outline: Check the category filter works
     Given "resource" content:
       |title          |status |field_resource_category      |
