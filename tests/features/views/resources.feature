@@ -1,7 +1,7 @@
 Feature: Checks "Resources" View
   As a developer, I need to verify:
   That the "Resources" view page exists and correct roles can view page
-  That the sort and filters work
+  That the sort, filters, and links work
 
   # Scenarios for "Resources" View Page
 
@@ -67,3 +67,15 @@ Feature: Checks "Resources" View
       |Resources for Parents        |Test Resource2 |
       |Resources for People with AS |Test Resource3 |
       |Resources for Teachers       |Test Resource4 |
+
+  # Scenario 4
+  @api @39
+  Scenario: Check the "read more" link works
+    Given "resource" content:
+      |title          |status |field_resource_category |
+      |Test Resource1 |1      |Resources for Caregivers|
+
+    Given I am logged in as a user with the "anonymous user" role
+    When I visit "/resources"
+    And I click "Read more"
+    Then I should be on "resource/test-resource1"
