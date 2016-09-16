@@ -48,8 +48,8 @@ Feature: Checks "Resources" View
       |.views-row-8  |Test Resource4.2 |
 
   # Scenario 3
-  @api @39
-  Scenario Outline: Check the category filter works
+  @api @39 @now
+  Scenario: Check the category filter works
     Given "resource" content:
       |title          |status |field_resource_category      |
       |Test Resource1 |1      |Resources for Caregivers     |
@@ -59,14 +59,12 @@ Feature: Checks "Resources" View
 
     Given I am logged in as a user with the "anonymous user" role
     When I visit "/resources"
-    And I select "<category>" from "Category"
-    Then I should see "<title>"
-    Examples:
-      |category                     |title          |
-      |Resources for Caregivers     |Test Resource1 |
-      |Resources for Parents        |Test Resource2 |
-      |Resources for People with AS |Test Resource3 |
-      |Resources for Teachers       |Test Resource4 |
+    And I select "Resources for Caregivers" from "Category"
+    And I press the "Apply" button
+    Then I should see "Test Resource1"
+    And I should not see "Test Resource2"
+    And I should not see "Test Resource3"
+    And I should not see "Test Resource4"
 
   # Scenario 4
   @api @39
