@@ -1,9 +1,9 @@
 Feature: Checks "Upcoming Events" View
-  As a developer
-  I need to verify that the "Upcoming Events" view page exists
-  And that the correct roles can view the page
+  As a developer, I need to verify:
+  That the "Upcoming Events" View page and block exist
+  That all roles can view and correct content is being displayed
 
-# Scenarios checks the "Upcoming Events" view page exists.
+# Scenarios checks the "Upcoming Events" View PAGE.
   # Scenario 1
   @api @37
   Scenario Outline: Check the "Upcoming Events" view page exists and can be accessed
@@ -17,7 +17,6 @@ Feature: Checks "Upcoming Events" View
       |staff              |
       |administrator      |
 
-# Scenarios checks "Upcoming Events" date filter. "Test Event1" should not show.
   # Scenario 2
   @api @37
   Scenario: Check the date filter is working properly
@@ -35,3 +34,17 @@ Feature: Checks "Upcoming Events" View
     And I should see "Test Event3"
     And I should see "Test Event4"
     And I should see "Test Event5"
+
+# Scenarios check the "Upcoming Events" View BLOCK.
+  # Scenario 3
+  @api @38 @now
+  Scenario Outline: Check the block exists on home page for all roles
+    Given I am logged in as a user with the "<role>" role
+    When I visit "/"
+    Then I should see "Upcoming Events" in the "sidebar2" region
+    Examples:
+      |role               |
+      |anonymous user     |
+      |authenticated user |
+      |staff              |
+      |administrator      |
