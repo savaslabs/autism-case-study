@@ -108,3 +108,4 @@ default:
         content: ".content"
         taxonomy: "#taxonomy"
         fields: "#field-overview"
+        sidebar2: "#sidebar-second"
