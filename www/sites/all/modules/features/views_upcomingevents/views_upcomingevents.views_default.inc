@@ -111,6 +111,15 @@ function views_upcomingevents_views_default_views() {
     'multiple_to' => '',
     'show_remaining_days' => 0,
   );
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Visitor Type (field_visitor_type) */
+  $handler->display->display_options['arguments']['field_visitor_type_tid']['id'] = 'field_visitor_type_tid';
+  $handler->display->display_options['arguments']['field_visitor_type_tid']['table'] = 'field_data_field_visitor_type';
+  $handler->display->display_options['arguments']['field_visitor_type_tid']['field'] = 'field_visitor_type_tid';
+  $handler->display->display_options['arguments']['field_visitor_type_tid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_visitor_type_tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_visitor_type_tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_visitor_type_tid']['summary_options']['items_per_page'] = '25';
   $export['upcoming_events'] = $view;
 
   return $export;
