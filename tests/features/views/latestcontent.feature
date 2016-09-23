@@ -6,11 +6,10 @@ Feature: Checks "Latest Content" View
 # Scenarios check existance and access of Pages and Block
   # Scenario 1
   @api @30
-  Scenario Outline: Check the "Latest Content" view pages and block exist with correct access
+  Scenario Outline: Check the "Latest Content" view pages exist with correct access
     Given I am logged in as a user with the "<role>" role
     When I visit "<path>"
     Then I should not see "Page Not Found"
-
     Examples:
       |role           |path             |
       |anonymous user |/upcoming-events |
@@ -33,3 +32,16 @@ Feature: Checks "Latest Content" View
       |administrator |/parents         |
       |administrator |/people-with-AS  |
       |administrator |/teachers        |
+
+  # Scenario 2
+  @api @30 @now
+    Scenario Outline: Check the "latest content" block exists in homepage sidebar
+      Given I am logged in as a user with the "<role>" role
+      When I visit "/"
+      Then I should see "Latest Content Posted" in the "sidebar2" region
+    Examples:
+      |role               |
+      |anonymous user     |
+      |authenticated user |
+      |staff              |
+      |administrator      |

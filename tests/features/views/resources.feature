@@ -48,7 +48,7 @@ Feature: Checks "Resources" View
       |.views-row-8  |Test Resource4.2 |
 
   # Scenario 3
-  @api @39 @now
+  @api @39
   Scenario: Check the category filter works
     Given "resource" content:
       |title          |status |field_resource_category      |
