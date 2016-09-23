@@ -77,7 +77,7 @@ Feature: Checks custom "Event" content type.
     And I should see "Start Time"
     And I should see "End Date"
     And I should see "End Time"
-    And I should not see "Visitor Type"
+    And I should not see "Visitor Type" in the "maincontent" region
     Examples:
       | path              |
       | event/test-event1 |
