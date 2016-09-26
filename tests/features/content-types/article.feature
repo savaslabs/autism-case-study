@@ -52,3 +52,15 @@ Feature: Checks "Article" content type.
       | article/test-article3 |
       | article/test-article4 |
       | article/test-article5 |
+
+# Scenario checks the "Tag" field has been successfully deleted
+  # Scenario 5
+  @api @30
+  Scenario: Check the "Tag" field is unavailable to users when creating "article"
+    Given I am logged in as a user with the "staff" role
+    When I visit "node/add"
+    And I click "Article"
+    Then I should be on "node/add/article"
+    # Not testing for the word "tag" as it is used elsewhere on page, so using
+    # the description that accompanies the tag field.
+    And I should not see "Enter a comma-separated list of words"

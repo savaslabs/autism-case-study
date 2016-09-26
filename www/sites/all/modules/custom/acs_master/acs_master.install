@@ -33,7 +33,7 @@ function _acs_master_all_modules() {
     'date',
     'views',
     'strongarm',
-    // 'features_extra', (8/11: removed for now).
+    // 'features_extra', (8/11: removed bc it is a package of other modules).
     'token',
     'pathauto',
     'webform',
@@ -51,6 +51,9 @@ function _acs_master_all_modules() {
     'views_upcomingevents',
     'date_views',
     'views_resources',
+    'views_latest_content',
+    'fe_block',
+    'block_latest_content',
   );
   // 2. Return array as function output.
   return $arr_modules_ALL;
@@ -181,6 +184,16 @@ function acs_master_install() {
   );
   // 4.2 Save the taxonomy terms by passing to helper function.
   _acs_master_save_taxonomy_terms($arr_terms);
+
+  // 5. Delete the "Article" content type's "Tag" field (see update_7117).
+  // 5.1. Mark field to be deleted.
+  field_delete_field("field_tags");
+  // 5.2. Delete the field via a cron run.
+  // 5.2.a Determine the range for the cron run. Do this by finding number of
+  // "article" instances.
+  $counter = db_query("SELECT COUNT(nid) FROM {node} n WHERE n.type='article' AND n.status=1")->fetchField();
+  // 5.2.b Call the cron run to delete field; add 1 to the node count.
+  field_purge_batch($counter + 1);
 }
 
 /**
@@ -232,7 +245,7 @@ function acs_master_update_7100() {
     'date',
     'views',
     'strongarm',
-    // 'features_extra', (8/11: removed for now).
+    // 'features_extra', (8/11: removed bc it is a package of other modules).
     'token',
     'pathauto',
     'webform',
@@ -593,4 +606,98 @@ function acs_master_update_7113() {
     // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
     throw new DrupalUpdateException($msg[2]);
   } // End if statement.
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Enables the following modules: views_latest_content.
+ */
+function acs_master_update_7114() {
+  // 1. Create an array listing all module names for this update.
+  $arr_modules = array(
+    'views_latest_content',
+  );
+
+  // 2. Enable each module in the array by passing to helper function.
+  // Store results in $msg for confirmation and error handling.
+  $msg = _acs_master_enable_modules($arr_modules);
+
+  // 3. Print confirmation message or throw exception if process unsuccessful.
+  if ($msg[1]) {
+    // 3.1 If $msg[1] = TRUE, then print confirmation string in 2nd element.
+    return $msg[2];
+  }
+  else {
+    // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
+    throw new DrupalUpdateException($msg[2]);
+  } // End if statement.
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Enables the following modules: fe_block (features extra package).
+ */
+function acs_master_update_7115() {
+  // 1. Create an array listing all module names for this update.
+  $arr_modules = array(
+    'fe_block',
+  );
+
+  // 2. Enable each module in the array by passing to helper function.
+  // Store results in $msg for confirmation and error handling.
+  $msg = _acs_master_enable_modules($arr_modules);
+
+  // 3. Print confirmation message or throw exception if process unsuccessful.
+  if ($msg[1]) {
+    // 3.1 If $msg[1] = TRUE, then print confirmation string in 2nd element.
+    return $msg[2];
+  }
+  else {
+    // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
+    throw new DrupalUpdateException($msg[2]);
+  } // End if statement.
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Enables the following modules: block_latest_content.
+ */
+function acs_master_update_7116() {
+  // 1. Create an array listing all module names for this update.
+  $arr_modules = array(
+    'block_latest_content',
+  );
+
+  // 2. Enable each module in the array by passing to helper function.
+  // Store results in $msg for confirmation and error handling.
+  $msg = _acs_master_enable_modules($arr_modules);
+
+  // 3. Print confirmation message or throw exception if process unsuccessful.
+  if ($msg[1]) {
+    // 3.1 If $msg[1] = TRUE, then print confirmation string in 2nd element.
+    return $msg[2];
+  }
+  else {
+    // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
+    throw new DrupalUpdateException($msg[2]);
+  } // End if statement.
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Delete the "Article" content type's "Tag" field.
+ */
+function acs_master_update_7117() {
+  // 1. Mark field to be deleted.
+  field_delete_field("field_tags");
+  // 2. Delete the field via a cron run.
+  // 2.1 Determine the range for the cron run. Do this by finding number of
+  // "article" instances.
+  $counter = db_query("SELECT COUNT(nid) FROM {node} n WHERE n.type='article' AND n.status=1")->fetchField();
+  // 2.2 Call the cron run to delete field; add 1 to the node count.
+  field_purge_batch($counter + 1);
 }
