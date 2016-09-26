@@ -69,8 +69,8 @@ Feature: Checks custom "Resource" content type.
     When I am at "<path>"
     Then I should see "Description"
     And I should see "Source URL"
-    And I should not see "Visitor Type"
-    And I should not see "Resource Category"
+    And I should not see "Visitor Type" in the "maincontent" region
+    And I should not see "Resource Category" in the "maincontent" region
     Examples:
       | path                    |
       | resource/test-resource1 |

@@ -109,3 +109,4 @@ default:
         taxonomy: "#taxonomy"
         fields: "#field-overview"
         sidebar2: "#sidebar-second"
+        maincontent: "#content"
