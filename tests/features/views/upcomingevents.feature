@@ -39,6 +39,11 @@ Feature: Checks "Upcoming Events" View
   # Scenario 3
   @api @38 @now
   Scenario Outline: Check the block exists on home page for all roles
+    Given "event" content:
+      | title        | status | field_description | field_start_date    | field_end_date      |
+      | Test Event1  | 1      | ABC               | 2017-09-01 00:00:00 | 2017-09-02 00:00:00 |
+      | Test Event2  | 1      | DEF               | 2015-09-01 00:00:00 | 2017-09-01 00:00:00 |
+
     Given I am logged in as a user with the "<role>" role
     When I visit "/"
     Then I should see "Upcoming Events" in the "sidebar2" region
