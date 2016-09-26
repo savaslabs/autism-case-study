@@ -184,6 +184,16 @@ function acs_master_install() {
   );
   // 4.2 Save the taxonomy terms by passing to helper function.
   _acs_master_save_taxonomy_terms($arr_terms);
+
+  // 5. Delete the "Article" content type's "Tag" field (see update_7117).
+  // 5.1. Mark field to be deleted.
+  field_delete_field("field_tags");
+  // 5.2. Delete the field via a cron run.
+  // 5.2.a Determine the range for the cron run. Do this by finding number of
+  // "article" instances.
+  $counter = db_query("SELECT COUNT(nid) FROM {node} n WHERE n.type='article' AND n.status=1")->fetchField();
+  // 5.2.b Call the cron run to delete field; add 1 to the node count.
+  field_purge_batch($counter + 1);
 }
 
 /**
