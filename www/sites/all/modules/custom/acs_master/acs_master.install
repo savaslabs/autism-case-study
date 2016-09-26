@@ -687,7 +687,7 @@ function acs_master_update_7117() {
   // 2. Delete the field via a cron run.
   // 2.1 Determine the range for the cron run. Do this by finding number of
   // "article" instances.
-  $counter = db_query("SELECT count(nid) FROM {node} WHERE node.type='article' AND node.status=1")->fetchField();
+  $counter = db_query("SELECT COUNT(nid) FROM {node} n WHERE n.type='article' AND n.status=1")->fetchField();
   // 2.2 Call the cron run to delete field; add 1 to the node count.
   field_purge_batch($counter + 1);
 }
