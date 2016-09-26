@@ -36,6 +36,11 @@ Feature: Checks "Latest Content" View
   # Scenario 2
   @api @30
   Scenario Outline: Check the "latest content" block exists in homepage sidebar
+    Given "article" content:
+      |title        |status |field_visitor_type |
+      |TestArticle1 |1      |Caregivers         |
+      |TestArticle2 |1      |Parents            |
+
     Given I am logged in as a user with the "<role>" role
     When I visit "/"
     Then I should see "Latest Content Posted" in the "sidebar2" region
@@ -47,7 +52,7 @@ Feature: Checks "Latest Content" View
       |administrator      |
 
 # Scenarios check the contextual filter
-  @api @30 @now
+  @api @30
   Scenario Outline: Check the contextual filters work for each page
     Given "article" content:
     |title        |status |field_visitor_type |
