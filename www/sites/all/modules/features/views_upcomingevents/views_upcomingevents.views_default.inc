@@ -112,14 +112,24 @@ function views_upcomingevents_views_default_views() {
     'show_remaining_days' => 0,
   );
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: Visitor Type (field_visitor_type) */
-  $handler->display->display_options['arguments']['field_visitor_type_tid']['id'] = 'field_visitor_type_tid';
-  $handler->display->display_options['arguments']['field_visitor_type_tid']['table'] = 'field_data_field_visitor_type';
-  $handler->display->display_options['arguments']['field_visitor_type_tid']['field'] = 'field_visitor_type_tid';
-  $handler->display->display_options['arguments']['field_visitor_type_tid']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['field_visitor_type_tid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['field_visitor_type_tid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_visitor_type_tid']['summary_options']['items_per_page'] = '25';
+  /* Contextual filter: Content: Has taxonomy term ID */
+  $handler->display->display_options['arguments']['tid']['id'] = 'tid';
+  $handler->display->display_options['arguments']['tid']['table'] = 'taxonomy_index';
+  $handler->display->display_options['arguments']['tid']['field'] = 'tid';
+  $handler->display->display_options['arguments']['tid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['tid']['default_argument_type'] = 'raw';
+  $handler->display->display_options['arguments']['tid']['default_argument_options']['index'] = '0';
+  $handler->display->display_options['arguments']['tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['tid']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['tid']['validate']['type'] = 'taxonomy_term';
+  $handler->display->display_options['arguments']['tid']['validate_options']['vocabularies'] = array(
+    'visitor_type' => 'visitor_type',
+  );
+  $handler->display->display_options['arguments']['tid']['validate_options']['type'] = 'convert';
+  $handler->display->display_options['arguments']['tid']['validate_options']['transform'] = TRUE;
+  $handler->display->display_options['arguments']['tid']['validate']['fail'] = 'ignore';
   $export['upcoming_events'] = $view;
 
   return $export;
