@@ -675,3 +675,19 @@ function acs_master_update_7116() {
     throw new DrupalUpdateException($msg[2]);
   } // End if statement.
 }
+
+/**
+ * Implements hook_update_N().
+ *
+ * Delete the "Article" content type's "Tag" field.
+ */
+function acs_master_update_7117() {
+  // 1. Mark field to be deleted.
+  field_delete_field("field_tags");
+  // 2. Delete the field via a cron run.
+  // 2.1 Determine the range for the cron run. Do this by finding number of
+  // "article" instances.
+  $counter = db_query("SELECT count(nid) FROM {node} WHERE node.type='article' AND node.status=1")->fetchField();
+  // 2.2 Call the cron run to delete field; add 1 to the node count.
+  field_purge_batch($counter + 1);
+}
