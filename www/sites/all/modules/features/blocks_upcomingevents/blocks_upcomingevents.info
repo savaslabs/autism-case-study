@@ -1,10 +1,10 @@
-name = Blocks: Latest Content
-description = Captures the View: Latest Content - Block configurations
+name = Blocks: Upcoming Events
+description = Captures the View: Upcoming Events - Block configurations
 core = 7.x
 package = Features
 version = 7.x-1.0-alpha1
 dependencies[] = fe_block
 dependencies[] = views
-features[fe_block_settings][] = views-latest_content-block_1
+features[fe_block_settings][] = views-upcoming_events-block_1
 features[features_api][] = api:2
 project path = sites/all/modules/features
