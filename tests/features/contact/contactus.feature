@@ -21,3 +21,21 @@ Feature: Checks "Contact Us" Contact Category
       |authenticated user |
       |staff              |
       |administrator      |
+
+  # Scenario 2
+  @api @40 @now
+  Scenario Outline: Check all roles can submit a "Contact Us" form
+    Given I am logged in as a user with the "<role>" role
+    When I visit "/contact"
+      And I fill in "Your name" with "Test User"
+      And I fill in "Your e-mail address" with "user@example.com"
+      And I fill in "Subject" with "Question"
+      And I fill in "Message" with "Where are you located?"
+      And I press "Send message"
+      Then I should see "Your message has been sent."
+    Examples:
+      |role               |
+      |anonymous user     |
+      |authenticated user |
+      |staff              |
+      |administrator      |
