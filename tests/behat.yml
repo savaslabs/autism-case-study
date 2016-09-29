@@ -61,15 +61,20 @@ default:
                 - 'delete own event content'
                 - 'edit any event content'
                 - 'edit own event content'
+                - 'access site-wide contact form'
+                - 'access user contact forms'
               authenticated user:
                 - 'access comments'
                 - 'post comments'
                 - 'skip comment approval'
                 - 'use text format filtered_html'
                 - 'access content'
+                - 'access site-wide contact form'
+                - 'access user contact forms'
               anonymous user:
                 - 'access comments'
                 - 'access content'
+                - 'access site-wide contact form'
         - Drupal\DrupalExtension\Context\DrupalContext
     taxonomy:
       paths:
