@@ -10,7 +10,11 @@ Feature: Checks "Contact Us" Contact Category
     Given I am logged in as a user with the "<role>" role
     When I visit "/contact"
     Then I should not see "Page Not Found"
+    And I should see "Your name" in the "maincontent" region
+    And I should see "Your e-mail address" in the "maincontent" region
+    And I should see "Subject" in the "maincontent" region
     And I should see "Contact Us" in the "maincontent" region
+    And I should see "Message" in the "maincontent" region
     Examples:
       |role               |
       |anonymous user     |
