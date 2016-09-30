@@ -100,6 +100,10 @@ default:
         - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\MessageContext
   extensions:
+    Lakion\Behat\MinkDebugExtension:
+        directory: %paths.base%/logs
+        screenshot: true
+        clean_start: true
     Behat\MinkExtension:
       goutte: ~
       selenium2:
