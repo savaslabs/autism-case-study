@@ -120,3 +120,5 @@ default:
         fields: "#field-overview"
         sidebar2: "#sidebar-second"
         maincontent: "#content"
+      selectors:
+        error_message_selector: '.messages--error'
