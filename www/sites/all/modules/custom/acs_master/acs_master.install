@@ -56,6 +56,7 @@ function _acs_master_all_modules() {
     'block_latest_content',
     'blocks_upcomingevents',
     'contact_contact_us',
+    'entity',
   );
   // 2. Return array as function output.
   return $arr_modules_ALL;
@@ -754,4 +755,91 @@ function acs_master_update_7119() {
     // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
     throw new DrupalUpdateException($msg[2]);
   } // End if statement.
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Enables the following modules: entity.
+ */
+function acs_master_update_7120() {
+  // 1. Create an array listing all module names for this update.
+  $arr_modules = array(
+    'entity',
+  );
+
+  // 2. Enable each module in the array by passing to helper function.
+  // Store results in $msg for confirmation and error handling.
+  $msg = _acs_master_enable_modules($arr_modules);
+
+  // 3. Print confirmation message or throw exception if process unsuccessful.
+  if ($msg[1]) {
+    // 3.1 If $msg[1] = TRUE, then print confirmation string in 2nd element.
+    return $msg[2];
+  }
+  else {
+    // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
+    throw new DrupalUpdateException($msg[2]);
+  } // End if statement.
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Creates the "About Us" Page content type Node.
+ */
+function acs_master_update_7121() {
+  global $user;
+
+  // 1. entity_create replaces the procedural steps in the first example of
+  // creating a new object $node and setting its 'type' and uid property.
+  $values = array(
+    'type' => 'Page',
+    'uid' => $user->uid,
+    // (1 or 0): published or not.
+    'status' => 1,
+    // 0 = comments disabled, 1 = read only, 2 = read/write.
+    'comment' => 0,
+    // (1 or 0): promoted to front page.
+    'promote' => 0,
+  );
+  $entity = entity_create('node', $values);
+
+  // 2. The entity is now created, but we have not yet simplified use of it.
+  // Now create an entity_metadata_wrapper around the new node entity
+  // to make getting and setting values easier.
+  $ewrapper = entity_metadata_wrapper('node', $entity);
+
+  // 3. Using the wrapper, we do not have to worry about telling Drupal
+  // what language we are using. The Entity API handles that for us.
+  $ewrapper->title->set('About Us');
+
+  // 4. Setting the body is a bit different from other properties or fields
+  // because the body can have both its complete value and its summary.
+  $my_body_content = 'Test Body Content';
+  $ewrapper->body->set(array('value' => $my_body_content));
+  $ewrapper->body->summary->set('About Our Organization');
+
+  // Setting the value of an entity reference field only requires passing
+  // the entity id (e.g., nid) of the entity to which you want to refer
+  // The nid 15 here is just an example.
+  $ref_nid = 15;
+  // Note that the entity id (e.g., nid) must be passed as an integer not a
+  // string.
+  $ewrapper->field_my_entity_ref->set(intval($ref_nid));
+
+  // Entity API cannot set date field values so the 'old' method must
+  // be used.
+  $my_date = new DateTime('January 1, 2013');
+  $entity->field_my_date[LANGUAGE_NONE][0] = array(
+    'value' => date_format($my_date, 'Y-m-d'),
+    'timezone' => 'UTC',
+    'timezone_db' => 'UTC',
+  );
+
+  // Now just save the wrapper and the entity
+  // There is some suggestion that the 'true' argument is necessary to
+  // the entity save method to circumvent a bug in Entity API. If there is
+  // such a bug, it almost certainly will get fixed, so make sure to check.
+  $ewrapper->save();
 }
