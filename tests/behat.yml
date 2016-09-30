@@ -90,14 +90,15 @@ default:
       paths:
         - %paths.base%/features/views
       contexts:
-              - Drupal\DrupalExtension\Context\DrupalContext
-              - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
     contact:
-          paths:
-            - %paths.base%/features/contact
-          contexts:
-                  - Drupal\DrupalExtension\Context\DrupalContext
-                  - Drupal\DrupalExtension\Context\MinkContext
+      paths:
+        - %paths.base%/features/contact
+      contexts:
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
   extensions:
     Behat\MinkExtension:
       goutte: ~
