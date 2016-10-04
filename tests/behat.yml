@@ -61,15 +61,18 @@ default:
                 - 'delete own event content'
                 - 'edit any event content'
                 - 'edit own event content'
+                - 'access site-wide contact form'
               authenticated user:
                 - 'access comments'
                 - 'post comments'
                 - 'skip comment approval'
                 - 'use text format filtered_html'
                 - 'access content'
+                - 'access site-wide contact form'
               anonymous user:
                 - 'access comments'
                 - 'access content'
+                - 'access site-wide contact form'
         - Drupal\DrupalExtension\Context\DrupalContext
     taxonomy:
       paths:
@@ -87,9 +90,20 @@ default:
       paths:
         - %paths.base%/features/views
       contexts:
-              - Drupal\DrupalExtension\Context\DrupalContext
-              - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+    contact:
+      paths:
+        - %paths.base%/features/contact
+      contexts:
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
   extensions:
+    Lakion\Behat\MinkDebugExtension:
+      directory: %paths.base%/logs
+      screenshot: true
+      clean_start: true
     Behat\MinkExtension:
       goutte: ~
       selenium2:
@@ -110,3 +124,7 @@ default:
         fields: "#field-overview"
         sidebar2: "#sidebar-second"
         maincontent: "#content"
+      selectors:
+        message_selector: '.messages'
+        error_message_selector: '.messages.error'
+        success_message_selector: '.messages.status'

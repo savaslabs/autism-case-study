@@ -188,6 +188,8 @@ function roles_permissions_user_default_permissions() {
     'name' => 'access site-wide contact form',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
       'site administrator' => 'site administrator',
     ),
     'module' => 'contact',

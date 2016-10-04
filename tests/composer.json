@@ -3,7 +3,8 @@
     "drupal/drupal-extension": "*",
     "behat/mink-browserkit-driver": "*",
     "behat/mink-selenium2-driver": "*",
-    "drupal/coder": "^8.2"
+    "drupal/coder": "^8.2",
+    "lakion/mink-debug-extension": "^1.1"
   },
   "config": {
     "bin-dir": "bin/"
