@@ -67,7 +67,7 @@ function _acs_master_all_modules() {
  * @param array $arr_modules
  *    Array of module machine names to be enabled.
  *
- * @return array $result
+ * @return array
  *   2 element array with message for error handling:
  *   - If all modules were enabled correctly, then the 1st element will be TRUE
  *   and the 2nd element will contain the success confirmation string.
