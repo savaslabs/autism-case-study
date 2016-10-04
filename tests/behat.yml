@@ -101,9 +101,9 @@ default:
         - Drupal\DrupalExtension\Context\MessageContext
   extensions:
     Lakion\Behat\MinkDebugExtension:
-        directory: %paths.base%/logs
-        screenshot: true
-        clean_start: true
+      directory: %paths.base%/logs
+      screenshot: true
+      clean_start: true
     Behat\MinkExtension:
       goutte: ~
       selenium2:
@@ -125,4 +125,6 @@ default:
         sidebar2: "#sidebar-second"
         maincontent: "#content"
       selectors:
-        error_message_selector: '.messages--error'
+        message_selector: '.messages'
+        error_message_selector: '.messages.error'
+        success_message_selector: '.messages.status'
