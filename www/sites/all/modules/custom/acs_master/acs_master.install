@@ -178,12 +178,13 @@ function _acs_master_create_about_us() {
   $ewrapper->title->set('About Us');
 
   // 5. Set the Body field.
-  // $my_body_content = 'Test Body Content';.
-  // 5.1 Set Body filed format.
-  $ewrapper->body->format->set('full_html');
-  // 5.2 Pull content from html file and place into Body field.
+  // 5.1 Pull content from 'AboutUs' html file.
   $my_body_content = file_get_contents(__DIR__ . '/Content/AboutUs.html');
-  $ewrapper->body->set(array('value' => $my_body_content));
+  // 5.2 Set Body field's content and text format.
+  $ewrapper->body->set(array(
+    'value' => $my_body_content,
+    'format' => 'full_html',
+  ));
   // 5.3 Set Summary.
   $ewrapper->body->summary->set('About Our Organization');
 
