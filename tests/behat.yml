@@ -105,6 +105,8 @@ default:
       contexts:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
+  gherkin:
+    cache: ~
   extensions:
     Lakion\Behat\MinkDebugExtension:
       directory: %paths.base%/logs
