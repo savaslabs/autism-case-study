@@ -56,6 +56,7 @@ function _acs_master_all_modules() {
     'block_latest_content',
     'blocks_upcomingevents',
     'contact_contact_us',
+    'entity',
   );
   // 2. Return array as function output.
   return $arr_modules_ALL;
@@ -143,6 +144,58 @@ function _acs_master_save_taxonomy_terms($arr_terms) {
 }
 
 /**
+ * Create "About Us" node of Content Type: Page.
+ *
+ * We will use the functions provided by 'Entity API'.
+ */
+function _acs_master_create_about_us() {
+
+  global $user;
+
+  // 1. Set new object node's 'type'm 'uid', and general properties.
+  $values = array(
+    // 1.1 Content type = page (*must use MACHINE NAME!).
+    'type' => 'page',
+    // 1.2 User ID.
+    'uid' => $user->uid,
+    // 1.3 Publish status; 1 = Yes, 0 = No.
+    'status' => 1,
+    // 1.4 Comment status; 0 = comments disabled, 1 = read only, 2 = read/write.
+    'comment' => 0,
+    // 1.5 Promote status; 1 = Yes, 0 = No.
+    'promote' => 0,
+  );
+
+  // 2. Create the new node using Entity API provided function.
+  $entity = entity_create('node', $values);
+
+  // 3. Use Entity API function to create a wrapper around the new node entity
+  // that makes getting and setting values easier for this node. Also we don't
+  // need to specify the language when using Entity API.
+  $ewrapper = entity_metadata_wrapper('node', $entity);
+
+  // 4. Set the Title field.
+  $ewrapper->title->set('About Us');
+
+  // 5. Set the Body field.
+  // 5.1 Pull content from 'AboutUs' html file.
+  $my_body_content = file_get_contents(__DIR__ . '/Content/AboutUs.html');
+  // 5.2 Set Body field's content and text format.
+  $ewrapper->body->set(array(
+    'value' => $my_body_content,
+    'format' => 'full_html',
+  ));
+  // 5.3 Set Summary.
+  $ewrapper->body->summary->set('About Our Organization');
+
+  // 6. Save the wrapper and the entity.
+  // There is some suggestion that the 'true' argument is necessary to
+  // the entity save method to circumvent a bug in Entity API. If there is
+  // such a bug, it almost certainly will get fixed, so make sure to check.
+  $ewrapper->save();
+}
+
+/**
  * Implements hook_install().
  *
  * This function runs the first time this module ACS Master is enabled.
@@ -196,6 +249,9 @@ function acs_master_install() {
   $counter = db_query("SELECT COUNT(nid) FROM {node} n WHERE n.type='article' AND n.status=1")->fetchField();
   // 5.2.b Call the cron run to delete field; add 1 to the node count.
   field_purge_batch($counter + 1);
+
+  // 6. Call function that creates the "About Us" Page content type.
+  _acs_master_create_about_us();
 }
 
 /**
@@ -754,4 +810,40 @@ function acs_master_update_7119() {
     // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
     throw new DrupalUpdateException($msg[2]);
   } // End if statement.
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Enables the following modules: entity.
+ */
+function acs_master_update_7120() {
+  // 1. Create an array listing all module names for this update.
+  $arr_modules = array(
+    'entity',
+  );
+
+  // 2. Enable each module in the array by passing to helper function.
+  // Store results in $msg for confirmation and error handling.
+  $msg = _acs_master_enable_modules($arr_modules);
+
+  // 3. Print confirmation message or throw exception if process unsuccessful.
+  if ($msg[1]) {
+    // 3.1 If $msg[1] = TRUE, then print confirmation string in 2nd element.
+    return $msg[2];
+  }
+  else {
+    // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
+    throw new DrupalUpdateException($msg[2]);
+  } // End if statement.
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Creates the "About Us" Page content type Node.
+ */
+function acs_master_update_7121() {
+  // 1. Call function that creates the "About Us" Page content type.
+  _acs_master_create_about_us();
 }

@@ -80,7 +80,7 @@ default:
       contexts:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
-    content:
+    contenttype:
       paths:
         - %paths.base%/features/content-types
       contexts:
@@ -99,6 +99,14 @@ default:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\MessageContext
+    content:
+      paths:
+        - %paths.base%/features/content
+      contexts:
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+  gherkin:
+    cache: ~
   extensions:
     Lakion\Behat\MinkDebugExtension:
       directory: %paths.base%/logs
