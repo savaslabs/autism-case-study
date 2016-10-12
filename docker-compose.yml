@@ -82,6 +82,8 @@ services:
   selenium:
     container_name: selenium
     image: selenium/standalone-chrome:2.53.0
+    volumes:
+      - /dev/shm:/dev/shm
 
 volumes:
   mysql-data:
