@@ -12,6 +12,7 @@ install:
 	make provision
 
 provision:
+	sleep 30
 	docker-compose exec -T --user 82 php drush @default.dev updb -y
 	docker-compose exec -T --user 82 php drush @default.dev cc all
 	docker-compose exec -T --user 82 php drush @default.dev pm-enable acs_master -y
