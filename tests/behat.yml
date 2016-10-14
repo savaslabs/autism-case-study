@@ -105,6 +105,12 @@ default:
       contexts:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
+    forums:
+      paths:
+        - %paths.base%/features/forums
+      contexts:
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
   gherkin:
     cache: ~
   extensions:
