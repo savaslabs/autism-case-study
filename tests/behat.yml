@@ -69,10 +69,16 @@ default:
                 - 'use text format filtered_html'
                 - 'access content'
                 - 'access site-wide contact form'
+                - 'create forum content'
+                - 'edit own forum content'
+                - 'delete own forum content'
               anonymous user:
                 - 'access comments'
                 - 'access content'
                 - 'access site-wide contact form'
+                - 'create forum content'
+                - 'edit own forum content'
+                - 'delete own forum content'
         - Drupal\DrupalExtension\Context\DrupalContext
     taxonomy:
       paths:
