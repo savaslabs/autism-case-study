@@ -33,7 +33,7 @@ Feature: Checks Forums functionality
         | Subject | Ideas for chocolate appreciation |
         | Body    | What can we do to show our love for chocolate? |
       And I press the "Save" button
-      Then I should be on "/content/ideas-chocolate-appreciation"
+      Then I should see "Ideas for chocolate appreciation"
       And I fill in the following:
         | Your name | chocolover  |
         | Subject   | Fondue?     |
