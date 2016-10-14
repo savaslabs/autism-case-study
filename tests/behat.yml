@@ -146,6 +146,7 @@ default:
         fields: "#field-overview"
         sidebar2: "#sidebar-second"
         maincontent: "#content"
+        comments: "#comments"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.error'

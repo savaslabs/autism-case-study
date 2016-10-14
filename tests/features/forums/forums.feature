@@ -23,4 +23,21 @@ Feature: Checks Forums functionality
 
   # Scenario 2
   @api @42
-    
+  Scenario: Check anonymous user can create new topic and comment on topic
+    Given I am an anonymous user
+      When I visit "/forum"
+      And I click "Events"
+      Then I should be on "/forums/events"
+      And I click "Add new Forum topic"
+      And I fill in the following:
+        | Subject | Ideas for chocolate appreciation |
+        | Body    | What can we do to show our love for chocolate? |
+      And I press the "Save" button
+      Then I should be on "/content/ideas-chocolate-appreciation"
+      And I fill in the following:
+        | Your name | chocolover  |
+        | Subject   | Fondue?     |
+        | Comment   | What about a chocolate fondue or chocolate waterfall?|
+      And I press the "Save" button
+      Then I should see "chocolate fondue" in the "comments" region
+
