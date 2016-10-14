@@ -74,6 +74,8 @@ default:
                 - 'delete own forum content'
               anonymous user:
                 - 'access comments'
+                - 'post comments'
+                - 'skip comment approval'
                 - 'access content'
                 - 'access site-wide contact form'
                 - 'create forum content'
