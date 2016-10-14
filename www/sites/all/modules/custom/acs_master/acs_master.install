@@ -204,15 +204,15 @@ function _acs_master_create_forums() {
 
   // 1. Create the forum structure array with "forums" as vocabulary key.
   $arr_terms = array(
-     'forums' => array(
-       'General Topics',
-       'Resources',
-       'Events',
-       'Parents',
-       'Teachers',
-       'Caregivers',
-       "Living with AS",
-     )
+    'forums' => array(
+      'General Topics',
+      'Resources',
+      'Events',
+      'Parents',
+      'Teachers',
+      'Caregivers',
+      "Living with AS",
+    ),
   );
   // 2. Save the terms by passing to the helper function.
   _acs_master_save_taxonomy_terms($arr_terms);
