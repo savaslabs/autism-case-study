@@ -22,9 +22,12 @@ Feature: Checks Forums functionality
       And I should see "We like chocolate!"
 
   # Scenario 2
-  @api @42
+  @api @42 @now
   Scenario: Check anonymous user can create new topic and comment on topic
-    Given I am an anonymous user
+    Given I am logged in as a user with the "anonymous user" role
+    # Use this step as opposed to "Given I am an anonymous user" because we want
+    # Behat to delete the temporary content the "anonymous user" will create in
+    # this scenario. If using the "simple" step, it won't delete the content.
       When I visit "/forum"
       And I click "Events"
       Then I should be on "/forums/events"
@@ -35,7 +38,7 @@ Feature: Checks Forums functionality
       And I press the "Save" button
       Then I should see "Ideas for chocolate appreciation"
       And I fill in the following:
-        | Your name | chocolover  |
+        #| Your name | chocolover  |
         | Subject   | Fondue?     |
         | Comment   | What about a chocolate fondue or chocolate waterfall?|
       And I press the "Save" button
