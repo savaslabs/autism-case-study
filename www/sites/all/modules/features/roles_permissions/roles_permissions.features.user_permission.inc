@@ -565,6 +565,8 @@ function roles_permissions_user_default_permissions() {
     'name' => 'create forum content',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -759,6 +761,8 @@ function roles_permissions_user_default_permissions() {
     'name' => 'delete own forum content',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
@@ -994,6 +998,8 @@ function roles_permissions_user_default_permissions() {
     'name' => 'edit own forum content',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
       'site administrator' => 'site administrator',
       'staff' => 'staff',
     ),
