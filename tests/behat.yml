@@ -69,10 +69,18 @@ default:
                 - 'use text format filtered_html'
                 - 'access content'
                 - 'access site-wide contact form'
+                - 'create forum content'
+                - 'edit own forum content'
+                - 'delete own forum content'
               anonymous user:
                 - 'access comments'
+                - 'post comments'
+                - 'skip comment approval'
                 - 'access content'
                 - 'access site-wide contact form'
+                - 'create forum content'
+                - 'edit own forum content'
+                - 'delete own forum content'
         - Drupal\DrupalExtension\Context\DrupalContext
     taxonomy:
       paths:
@@ -105,6 +113,12 @@ default:
       contexts:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
+    forums:
+      paths:
+        - %paths.base%/features/forums
+      contexts:
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
   gherkin:
     cache: ~
   extensions:
@@ -132,6 +146,7 @@ default:
         fields: "#field-overview"
         sidebar2: "#sidebar-second"
         maincontent: "#content"
+        comments: "#comments"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.error'
