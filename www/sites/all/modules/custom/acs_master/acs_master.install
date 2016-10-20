@@ -230,8 +230,10 @@ function _acs_master_create_aggregator_feed() {
   $feed = array(
     'title' => 'Latest AS News',
     'url' => 'http://www.news-medical.net/tag/feed/aspergers-syndrome.aspx',
-    'refresh' => 3600, // Update interval in seconds
-    'block' => 5, // News items in block
+    // Update interval in seconds.
+    'refresh' => 3600,
+    // Items in block.
+    'block' => 5,
   );
   // 2. Save feed with Aggregator module.
   aggregator_save_feed($feed);
