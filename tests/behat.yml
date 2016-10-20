@@ -62,6 +62,7 @@ default:
                 - 'edit any event content'
                 - 'edit own event content'
                 - 'access site-wide contact form'
+                - 'access news feeds'
               authenticated user:
                 - 'access comments'
                 - 'post comments'
@@ -72,6 +73,7 @@ default:
                 - 'create forum content'
                 - 'edit own forum content'
                 - 'delete own forum content'
+                - 'access news feeds'
               anonymous user:
                 - 'access comments'
                 - 'post comments'
@@ -81,6 +83,7 @@ default:
                 - 'create forum content'
                 - 'edit own forum content'
                 - 'delete own forum content'
+                - 'access news feeds'
         - Drupal\DrupalExtension\Context\DrupalContext
     taxonomy:
       paths:
