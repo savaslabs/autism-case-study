@@ -220,6 +220,24 @@ function _acs_master_create_forums() {
 }
 
 /**
+ * Create "Latest AS News" Feed.
+ *
+ * Create the "Latest AS News" feed with the Aggregator Module.
+ */
+function _acs_master_create_aggregator_feed() {
+
+  // 1. "Latest AS News" feed configuration.
+  $feed = array(
+    'title' => 'Latest AS News',
+    'url' => 'http://www.news-medical.net/tag/feed/aspergers-syndrome.aspx',
+    'refresh' => 3600, // Update interval in seconds
+    'block' => 5, // News items in block
+  );
+  // 2. Save feed with Aggregator module.
+  aggregator_save_feed($feed);
+}
+
+/**
  * Implements hook_install().
  *
  * This function runs the first time this module ACS Master is enabled.
@@ -279,6 +297,9 @@ function acs_master_install() {
 
   // 7. Call function that creates the Forum structure.
   _acs_master_create_forums();
+
+  // 8. Call function that creates the "Latest AS News" feed with Aggregator.
+  _acs_master_create_aggregator_feed();
 }
 
 /**
@@ -888,9 +909,19 @@ function acs_master_update_7122() {
 /**
  * Implements hook_update_N().
  *
- * Enables the following modules: block_feed_latest_news.
+ * Creates the "Latest AS News" Feed.
  */
 function acs_master_update_7123() {
+  // 7. Call function that creates the Feed with Aggregator module.
+  _acs_master_create_aggregator_feed();
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Enables the following modules: block_feed_latest_news.
+ */
+function acs_master_update_7124() {
   // 1. Create an array listing all module names for this update.
   $arr_modules = array(
     'block_feed_latest_news',
