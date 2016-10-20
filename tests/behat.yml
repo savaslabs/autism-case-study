@@ -122,6 +122,12 @@ default:
       contexts:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
+    feeds:
+      paths:
+        - %paths.base%/features/feeds
+      contexts:
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
   gherkin:
     cache: ~
   extensions:
