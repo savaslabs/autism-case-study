@@ -17,6 +17,8 @@ provision:
 	docker-compose exec -T --user 82 php drush @default.dev pm-enable acs_master -y
 	docker-compose exec -T --user 82 php drush @default.dev fra -y
 	docker-compose exec -T --user 82 php drush @default.dev wd-del all -y
+	docker-compose exec -T --user 82 php drush @default.dev cron
+	docker-compose exec -T --user 82 php drush @default.dev cc all
 	docker-compose ps
 
 update-tests:

@@ -1,0 +1,10 @@
+name = Block: Feed-Latest News
+description = Captures configuration for the Block displaying the "Latest AS News" feed
+core = 7.x
+package = Features
+version = 7.x-1.0-alpha1
+dependencies[] = aggregator
+dependencies[] = fe_block
+features[fe_block_settings][] = aggregator-feed-1
+features[features_api][] = api:2
+project path = sites/all/modules/features
