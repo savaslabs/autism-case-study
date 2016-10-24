@@ -128,6 +128,12 @@ default:
       contexts:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
+    menus:
+      paths:
+        - %paths.base%/features/menus
+      contexts:
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
   gherkin:
     cache: ~
   extensions:
@@ -156,6 +162,7 @@ default:
         sidebar2: "#sidebar-second"
         maincontent: "#content"
         comments: "#comments"
+        main_menu: "#main-menu-links"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.error'
