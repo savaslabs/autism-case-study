@@ -22,7 +22,7 @@ Feature: Checks Forums functionality
       And I should see "We like chocolate!"
 
   # Scenario 2
-  @api @42 @now
+  @api @42
   Scenario: Check anonymous user can create new topic and comment on topic
     Given I am logged in as a user with the "anonymous user" role
     # Use this step as opposed to "Given I am an anonymous user" because we want

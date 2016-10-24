@@ -24,10 +24,22 @@ Feature: Checks "Main Menu"
       |authenticated user |
       |staff              |
       |administrator      |
-    
-  @api @now
-  Scenario: Check the Menu Links work using Anonymous User
+
+# Scenario 2
+  @api @44
+  Scenario Outline: Check the Menu Links work using Anonymous User
     Given I am an anonymous user
     When I visit "/"
-    And I click "Resources" in the "main_menu" region
-    Then I should be on "/resources"
+    And I click "<menu>" in the "main_menu" region
+    Then I am at <path>
+    Examples:
+      | menu          | path                 |
+      | Resources     | "/resources"         |
+      | Events        | "/upcoming-events"   |
+      | About Us      | "/page/about-us"     |
+      | Contact Us    | "/contact"           |
+      | Parents       | "/parents"           |
+      | Teachers      | "/teachers"          |
+      | Caregivers    | "/caregivers"        |
+      | Living with AS | "/people-with-AS"|
+      | Forums         | "/forum"         |
