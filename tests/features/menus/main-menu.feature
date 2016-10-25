@@ -25,21 +25,35 @@ Feature: Checks "Main Menu"
       |staff              |
       |administrator      |
 
-# Scenario 2
-  @api @44
+## Scenario 2
+#  @javascript @api @44 @now
+#  Scenario: Check the Menu Links work using Anonymous User
+#    Given I am an anonymous user
+#    # Demonstrates it works for the "home" menu link
+#    When I visit "/parents"
+#    And I click "Home" in the "main_menu" region
+#    Then I should be on "/"
+#    # For some reason it won't work for the "Parentes" link
+#    When I visit "/"
+#    And I click "Resources" in the "main_menu" region
+#    Then I should be on "http://mydrupalsite.dev/resources"
+
+# Scenario 2.1
+  @javascript @api @44
   Scenario Outline: Check the Menu Links work using Anonymous User
     Given I am an anonymous user
-    When I visit "/"
+    When I am on "/"
     And I click "<menu>" in the "main_menu" region
-    Then I am at <path>
+    Then I am at "<path>"
     Examples:
-      | menu          | path                 |
-      | Resources     | "/resources"         |
-      | Events        | "/upcoming-events"   |
-      | About Us      | "/page/about-us"     |
-      | Contact Us    | "/contact"           |
-      | Parents       | "/parents"           |
-      | Teachers      | "/teachers"          |
-      | Caregivers    | "/caregivers"        |
-      | Living with AS | "/people-with-AS"|
-      | Forums         | "/forum"         |
+      | menu          | path            |
+      | Home          | /               |
+      | Resources     | /resources      |
+      | Events        | /upcoming-events|
+      | About Us      | /page/about-us  |
+      | Contact Us    | /contact        |
+      | Parents       | /parents        |
+      | Teachers      | /teachers       |
+      | Caregivers    | /caregivers     |
+      | Living with AS | /people-with-AS|
+      | Forums         | /forum         |
