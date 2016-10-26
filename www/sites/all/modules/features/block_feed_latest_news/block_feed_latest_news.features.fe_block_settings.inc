@@ -18,14 +18,15 @@ function block_feed_latest_news_default_fe_block_settings() {
     'delta' => 'feed-1',
     'module' => 'aggregator',
     'node_types' => array(),
-    'pages' => '<front>',
+    'pages' => '<front>
+resources',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
         'region' => 'sidebar_second',
         'status' => 1,
         'theme' => 'bartik',
-        'weight' => -11,
+        'weight' => -12,
       ),
       'seven' => array(
         'region' => '',
