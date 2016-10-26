@@ -12,9 +12,11 @@ Feature: Checks "Latest AS News" Feed
 
 # Scenario: 2
   @api @43
-  Scenario Outline: Check all roles can view the feed
+  Scenario Outline: Check all roles can view the feed on proper pages
     Given I am logged in as a user with the "<role>" role
     When I visit "/"
+    Then I should see "Latest AS News" in the "sidebar2" region
+    When I visit "/resources"
     Then I should see "Latest AS News" in the "sidebar2" region
     Examples:
       |role               |
