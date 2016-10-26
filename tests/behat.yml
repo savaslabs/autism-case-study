@@ -134,6 +134,12 @@ default:
       contexts:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
+    extras:
+      paths:
+        - %paths.base%/features/extra-tests
+      contexts:
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
   gherkin:
     cache: ~
   extensions:
@@ -163,6 +169,7 @@ default:
         maincontent: "#content"
         comments: "#comments"
         main_menu: "#main-menu-links"
+        toolbar: "#toolbar"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.error'
