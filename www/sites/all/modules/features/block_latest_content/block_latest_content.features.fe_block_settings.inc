@@ -18,11 +18,11 @@ function block_latest_content_default_fe_block_settings() {
     'delta' => 'latest_content-block_1',
     'module' => 'views',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => '<front>',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
-        'region' => 'sidebar_second',
+        'region' => 'content',
         'status' => 1,
         'theme' => 'bartik',
         'weight' => 0,
@@ -35,7 +35,7 @@ function block_latest_content_default_fe_block_settings() {
       ),
     ),
     'title' => '',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   return $export;
