@@ -15,23 +15,23 @@ Feature: Checks Forums functionality
       And I press the "Save" button
     Given I am an anonymous user
       When I visit "/forum"
-      And I click "General Topics"
+      And I click "General Topics" in the "maincontent" region
       Then I should be on "/forums/general-topics"
-      And I click "Topic1"
+      And I click "Topic1" in the "maincontent" region
       Then I should be on "/content/topic1"
       And I should see "We like chocolate!"
 
   # Scenario 2
-  @api @42 @now
+  @api @42
   Scenario: Check anonymous user can create new topic and comment on topic
     Given I am logged in as a user with the "anonymous user" role
     # Use this step as opposed to "Given I am an anonymous user" because we want
     # Behat to delete the temporary content the "anonymous user" will create in
     # this scenario. If using the "simple" step, it won't delete the content.
       When I visit "/forum"
-      And I click "Events"
+      And I click "Events" in the "maincontent" region
       Then I should be on "/forums/events"
-      And I click "Add new Forum topic"
+      And I click "Add new Forum topic" in the "maincontent" region
       And I fill in the following:
         | Subject | Ideas for chocolate appreciation |
         | Body    | What can we do to show our love for chocolate? |
