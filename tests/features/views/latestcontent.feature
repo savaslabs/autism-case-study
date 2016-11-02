@@ -35,7 +35,7 @@ Feature: Checks "Latest Content" View
 
   # Scenario 2
   @api @30
-  Scenario Outline: Check the "latest content" block exists in homepage sidebar
+  Scenario Outline: Check the "latest content" block exists on homepage only
     Given "article" content:
       |title        |status |field_visitor_type |
       |TestArticle1 |1      |Caregivers         |
@@ -43,7 +43,9 @@ Feature: Checks "Latest Content" View
 
     Given I am logged in as a user with the "<role>" role
     When I visit "/"
-    Then I should see "Latest Content Posted" in the "sidebar2" region
+    Then I should see "Latest Content Posted" in the "maincontent" region
+    And I visit "/resources"
+    Then I should not see "Latest Content Posted" in the "maincontent" region
     Examples:
       |role               |
       |anonymous user     |

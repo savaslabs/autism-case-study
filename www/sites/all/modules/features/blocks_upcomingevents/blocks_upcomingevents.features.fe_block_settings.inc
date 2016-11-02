@@ -18,14 +18,18 @@ function blocks_upcomingevents_default_fe_block_settings() {
     'delta' => 'upcoming_events-block_1',
     'module' => 'views',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => '<front>
+parents
+teachers
+caregivers
+people-with-AS',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
         'region' => 'sidebar_second',
         'status' => 1,
         'theme' => 'bartik',
-        'weight' => 0,
+        'weight' => -13,
       ),
       'seven' => array(
         'region' => '',
@@ -35,7 +39,7 @@ function blocks_upcomingevents_default_fe_block_settings() {
       ),
     ),
     'title' => '',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   return $export;
