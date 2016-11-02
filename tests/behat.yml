@@ -165,6 +165,7 @@ default:
         content: ".content"
         taxonomy: "#taxonomy"
         fields: "#field-overview"
+        sidebar1: "#sidebar-first"
         sidebar2: "#sidebar-second"
         maincontent: "#content"
         comments: "#comments"
