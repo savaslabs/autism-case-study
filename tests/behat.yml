@@ -134,6 +134,12 @@ default:
       contexts:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
+    extras:
+      paths:
+        - %paths.base%/features/extra-tests
+      contexts:
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
   gherkin:
     cache: ~
   extensions:
@@ -144,7 +150,8 @@ default:
     Behat\MinkExtension:
       goutte: ~
       selenium2:
-        browser: 'chrome'
+        #browser: 'chrome'
+        browser: 'firefox'
         wd_host: selenium:4444/wd/hub
       base_url: http://nginx
     Drupal\DrupalExtension:
@@ -159,10 +166,12 @@ default:
         content: ".content"
         taxonomy: "#taxonomy"
         fields: "#field-overview"
+        sidebar1: "#sidebar-first"
         sidebar2: "#sidebar-second"
         maincontent: "#content"
         comments: "#comments"
         main_menu: "#main-menu-links"
+        toolbar: "#toolbar"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.error'
