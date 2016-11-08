@@ -81,7 +81,8 @@ services:
 #      - "8005:6082" # Control terminal
   selenium:
     container_name: selenium
-    image: selenium/standalone-chrome:2.53.0
+    #image: selenium/standalone-chrome:2.53.0
+    image: selenium/standalone-firefox:2.53.1
 
 volumes:
   mysql-data:
