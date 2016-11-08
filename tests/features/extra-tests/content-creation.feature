@@ -53,7 +53,7 @@ Feature: Runs through "content creation" scenarios
       | /people-with-AS | Parent Page |
 
 # Scenario 3
-  @api @46 @wip
+  @api @46 @failing
   Scenario: Staff user creates Basic Event for Parents
     Given I am logged in as a user with the "staff" role
     When I visit "/"
@@ -75,7 +75,7 @@ Feature: Runs through "content creation" scenarios
 
 
 # Scenario 4
-  @api @46 @wip
+  @api @46 @failing
   Scenario: Staff user creates 2 Resources tagged to different Visitor Types
     Given I am logged in as a user with the "staff" role
       When I visit "/"
@@ -179,7 +179,7 @@ Feature: Runs through "content creation" scenarios
     | Basic page  | Parent Page    | This is a Page for Parents     | Parents|
 
   # Scenario 8
-  @api @46 @wip
+  @api @46 @failing
   Scenario: Check Site Admin user can create an Event
     Given I am logged in as a user with the "site administrator" role
     When I visit "/"
