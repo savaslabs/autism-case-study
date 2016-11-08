@@ -150,7 +150,8 @@ default:
     Behat\MinkExtension:
       goutte: ~
       selenium2:
-        browser: 'chrome'
+        #browser: 'chrome'
+        browser: 'firefox'
         wd_host: selenium:4444/wd/hub
       base_url: http://nginx
     Drupal\DrupalExtension:
