@@ -107,6 +107,20 @@ function _acs_master_enable_modules($arr_modules) {
 }
 
 /**
+ * Disables each module listed within the passed array and returns confirmation.
+ *
+ * @param array $arr_modules
+ *    Array of module machine names to be disabled.
+ */
+function _acs_master_disable_modules($arr_modules) {
+  // 1. Loop through input array and disable each module individually.
+  foreach ($arr_modules as $module_name) {
+    // 1.1 disable module
+    module_disable(array($module_name));
+  }
+}
+
+/**
  * Creates/Saves Taxonomy Terms inside passed array.
  *
  * @param array $arr_terms
@@ -996,4 +1010,21 @@ function acs_master_update_7126() {
     // 3.2 If $msg[1] = FALSE, then print error message and throw Exception.
     throw new DrupalUpdateException($msg[2]);
   } // End if statement.
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Disables the following modules: views_ui, devel_generate, field_ui.
+ */
+function acs_master_update_7127() {
+  // 1. Create an array listing all module names for this update.
+  $arr_modules = array(
+    'views_ui',
+    'devel_generate',
+    'field_ui',
+  );
+
+  // 2. disable each module in the array by passing to helper function.
+  _acs_master_disable_modules($arr_modules);
 }
