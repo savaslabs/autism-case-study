@@ -115,7 +115,7 @@ function _acs_master_enable_modules($arr_modules) {
 function _acs_master_disable_modules($arr_modules) {
   // 1. Loop through input array and disable each module individually.
   foreach ($arr_modules as $module_name) {
-    // 1.1 disable module
+    // 1.1 disable module.
     module_disable(array($module_name));
   }
 }
