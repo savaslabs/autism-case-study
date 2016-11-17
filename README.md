@@ -53,6 +53,7 @@ To shell into the php container:
 `
 docker-compose exec --user 82 php /bin/sh
 `
+- Furthermore, to execute Drush commands in the php container, navigate to: `/var/www/html/www`
 
 To shell into the mySQL container:
 `
