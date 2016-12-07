@@ -1011,20 +1011,3 @@ function acs_master_update_7126() {
     throw new DrupalUpdateException($msg[2]);
   } // End if statement.
 }
-
-/**
- * Implements hook_update_N().
- *
- * Disables the following modules: views_ui, devel_generate, field_ui.
- */
-function acs_master_update_7127() {
-  // 1. Create an array listing all module names for this update.
-  $arr_modules = array(
-    'views_ui',
-    'devel_generate',
-    'field_ui',
-  );
-
-  // 2. disable each module in the array by passing to helper function.
-  _acs_master_disable_modules($arr_modules);
-}
