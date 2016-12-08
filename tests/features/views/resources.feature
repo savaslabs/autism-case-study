@@ -20,32 +20,28 @@ Feature: Checks "Resources" View
       |administrator      |
 
   # Scenario 2
-  @api @39
+  @api @39 @81
   Scenario Outline: Check content is being sorted by category and title
     Given "resource" content:
-      |title            |status |field_resource_category  |
-      |Test Resource1.1 |1      |Resources for Caregivers |
-      |Test Resource1.2 |1      |Resources for Caregivers |
-      |Test Resource2.1 |1      |Resources for Parents |
-      |Test Resource2.2 |1      |Resources for Parents |
+      |title            |status |field_resource_category      |
+      |Test Resource1.1 |1      |Resources for Caregivers     |
+      |Test Resource2.1 |1      |Resources for Parents        |
       |Test Resource3.1 |1      |Resources for People with AS |
-      |Test Resource3.2 |1      |Resources for People with AS |
-      |Test Resource4.1 |1      |Resources for Teachers |
-      |Test Resource4.2 |1      |Resources for Teachers |
+      |Test Resource4.1 |1      |Resources for Teachers       |
 
     Given I am logged in as a user with the "anonymous user" role
     When I visit "/resources"
     Then the "<view-row>" element should contain "<title>"
     Examples:
-      |view-row      |title            |
-      |.views-row-1  |Test Resource1.1 |
-      |.views-row-2  |Test Resource1.2 |
-      |.views-row-3  |Test Resource2.1 |
-      |.views-row-4  |Test Resource2.2 |
-      |.views-row-5  |Test Resource3.1 |
-      |.views-row-6  |Test Resource3.2 |
-      |.views-row-7  |Test Resource4.1 |
-      |.views-row-8  |Test Resource4.2 |
+      |view-row      |title                     |
+      |.views-row-1  |Professional Development  |
+      |.views-row-2  |Test Resource1.1          |
+      |.views-row-3  |Family Member Stories     |
+      |.views-row-4  |Test Resource2.1          |
+      |.views-row-5  |Articles by Persons       |
+      |.views-row-6  |Test Resource3.1          |
+      |.views-row-7  |Professional Development  |
+      |.views-row-8  |Test Resource4.1          |
 
   # Scenario 3
   @api @39
@@ -67,13 +63,9 @@ Feature: Checks "Resources" View
     And I should not see "Test Resource4"
 
   # Scenario 4
-  @api @39
+  @api @39 @81
   Scenario: Check the "read more" link works
-    Given "resource" content:
-      |title          |status |field_resource_category |
-      |Test Resource1 |1      |Resources for Caregivers|
-
-    Given I am logged in as a user with the "anonymous user" role
+    Given I am an anonymous user
     When I visit "/resources"
-    And I click "Read more"
-    Then I should be on "resource/test-resource1"
+    And I click "Read more" in the "view_row_1" region
+    Then I should be on "resource/professional-development-services"
