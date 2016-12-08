@@ -45,4 +45,4 @@ stop:
 
 up:
 	docker-compose up -d
-	sleep 10
+	sleep 15

@@ -26,7 +26,7 @@ Feature: Checks "Main Menu"
       |administrator      |
 
 ## Scenario 2
-#  @javascript @api @44 @now
+#  @javascript @api @44
 #  Scenario: Check the Menu Links work using Anonymous User
 #    Given I am an anonymous user
 #    # Demonstrates it works for the "home" menu link

@@ -9,13 +9,19 @@ The docker container portion of this project is based on large part on the Wodby
 
 
 ### Initialization
-In your `/etc/hosts` file add:
+1. In your `/etc/hosts` file add:
 
 `
 127.0.0.1  mydrupalsite.dev
 `
 
-* Run `make install`
+2. To include the SEED DB's content images on the local site:
+- Uncompress `files.tar.gz` located in the `content/` directory
+- Move the resulting uncompressed `sites/default/files` directory to `www/sites/default/files` (be careful not to overwrite the _entire_ `sites` directory by accident! Just move the `files` sub directory!).
+
+(Note: This case study doesn't follow our normal client project security practices. The DB is commited on github because it contains no sensitive information and is used for training purposes).
+
+3. Run `make install`
 
 ## Ongoing
 
@@ -84,4 +90,4 @@ make update-tests
 ### Drupal default admin user
 
 * username:  admin
-* password:  admin
+* password:  aVRtjM7W;3N+

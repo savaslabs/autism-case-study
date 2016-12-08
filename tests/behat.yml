@@ -172,6 +172,7 @@ default:
         comments: "#comments"
         main_menu: "#main-menu-links"
         toolbar: "#toolbar"
+        view_row_1: ".views-row-1"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.error'
